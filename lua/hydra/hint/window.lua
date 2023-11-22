@@ -108,8 +108,6 @@ function HintAutoWindow:show()
    end
    if not self.win_config then self:_make_win_config() end
 
-   vim.o.eventignore = 'all' -- turn off autocommands
-
    local winid = api.nvim_open_win(self.buffer.id, false, self.win_config)
    ---@type hydra.api.Window
    local win = Window(winid)
@@ -119,8 +117,6 @@ function HintAutoWindow:show()
    win.wo.conceallevel = 3
    win.wo.foldenable = false
    win.wo.wrap = false
-
-   vim.o.eventignore = nil -- turn on autocommands
 
    autocmd('TabEnter', { group = augroup, callback = function()
       if self.win:is_valid() then
