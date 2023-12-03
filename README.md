@@ -151,7 +151,7 @@ Feel free to add your own or edit the existing ones!
 To install with [packer](https://github.com/wbthomason/packer.nvim) use:
 
 ```lua
-use 'anuvyklack/hydra.nvim' 
+use 'nvim-island/hydra.nvim'
 ```
 
 ## How to create hydra
