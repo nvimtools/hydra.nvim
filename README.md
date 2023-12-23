@@ -121,7 +121,7 @@ A full fledged git "submode".
 
 <!-- Finally, you can even create your custom submode, for example for git: -->
 
-[Link to the code](https://github.com/anuvyklack/hydra.nvim/wiki/Git)
+[Link to the code](https://github.com/nvimtools/hydra.nvim/wiki/Git)
 
 ![](https://user-images.githubusercontent.com/13056013/175947218-d1b70266-9964-48c9-aaae-75195501ef7e.png)
 
@@ -129,21 +129,21 @@ A full fledged git "submode".
 
 You can also create a fancy menu to easy recall seldom used mappings.
 
-[Link to the code](https://github.com/anuvyklack/hydra.nvim/wiki/Telescope)
+[Link to the code](https://github.com/nvimtools/hydra.nvim/wiki/Telescope)
 
 ![](https://user-images.githubusercontent.com/13056013/179405895-b5206124-b091-42a4-ba5d-95bbc3e1b61b.png)
 
 
 ### Frequently used options
 
-[Link to the code](https://github.com/anuvyklack/hydra.nvim/wiki/Vim-Options)
+[Link to the code](https://github.com/nvimtools/hydra.nvim/wiki/Vim-Options)
 
 ![](https://user-images.githubusercontent.com/13056013/179405898-190c609c-3474-4809-a59b-a11e6da4e4ed.png)
 
 
 ### More hydras
 
-You can find more hydras in the [wiki](https://github.com/anuvyklack/hydra.nvim/wiki).
+You can find more hydras in the [wiki](https://github.com/nvimtools/hydra.nvim/wiki).
 Feel free to add your own or edit the existing ones!
 
 ## Installation
@@ -151,7 +151,7 @@ Feel free to add your own or edit the existing ones!
 To install with [packer](https://github.com/wbthomason/packer.nvim) use:
 
 ```lua
-use 'nvim-island/hydra.nvim'
+use 'nvimtools/hydra.nvim'
 ```
 
 ## How to create hydra
@@ -297,7 +297,7 @@ heads, what can be useful.
 
 ##### Pink color
 
-Pink hydra is of a different nature. It is a [key-layer](https://github.com/anuvyklack/hydra.nvim/tree/master/lua/hydra/layer)
+Pink hydra is of a different nature. It is a [key-layer](https://github.com/nvimtools/hydra.nvim/tree/main/lua/hydra/layer)
 inside, so all keys except overwritten are work as usual. Even `[count]` prefixes.
 
 #### `buffer`
@@ -412,7 +412,7 @@ hint.
 
     Show hydras name or `HYDRA:` label at the beginning of an auto-generated hint.
 
-  - **`funcs`**   `table<string, fun():string>`   ([built-in functions](https://github.com/anuvyklack/hydra.nvim/blob/master/lua/hydra/hint/vim-options.lua))
+  - **`funcs`**   `table<string, fun():string>`   ([built-in functions](https://github.com/nvimtools/hydra.nvim/blob/main/lua/hydra/hint/vim-options.lua))
 
     Table where keys are function names and values are functions them self. Each
     function should return string. This functions can be required from `hint` with
@@ -494,7 +494,7 @@ Built-in map arguments. See:
 `boolean`
 
 Only relevant for `pink` hydra. For all others will be skipped. The `pink` hydra is
-a [layer](https://github.com/anuvyklack/hydra.nvim/tree/master/lua/hydra/layer) inside,
+a [layer](https://github.com/nvimtools/hydra.nvim/tree/main/lua/hydra/layer) inside,
 and Layer binds its keymaps buffer local, which makes flag `nowait` available. See `:help
 :map-<nowait>`.
 
@@ -542,9 +542,9 @@ you can require this function from the `hint` wrap its name (key in the table) w
 will be shown. And later this function will be called every time when hydra head will be
 pressed and the hint will be updated with the function result string. Some functions are
 already built-in, you can find them in
-[this file](https://github.com/anuvyklack/hydra.nvim/blob/master/lua/hydra/hint/vim-options.lua).
+[this file](https://github.com/nvimtools/hydra.nvim/blob/main/lua/hydra/hint/vim-options.lua).
 You may submit or request some others which you think may be useful.
-The using of this feature is shown in [options hydra](https://github.com/anuvyklack/hydra.nvim/wiki/Vim-Options).
+The using of this feature is shown in [options hydra](https://github.com/nvimtools/hydra.nvim/wiki/Vim-Options).
 
 If you pass no `hint`, then one line hint will be generated automatically. The keys and
 their descriptions will be placed in the order heads were passed in the `heads` table.
@@ -626,11 +626,11 @@ you to integrate Hydra in your statusline:
 ## Drawbacks
 
 `[count]` is not supported in a red, amaranth and teal hydras (see `:help count`).
-But supported in pink hydra since it is a [layer](https://github.com/anuvyklack/hydra.nvim/tree/master/lua/hydra/layer).
+But supported in pink hydra since it is a [layer](https://github.com/nvimtools/hydra.nvim/tree/main/lua/hydra/layer).
 
 ## How it works under the hood
 
-You can read about the internal mechanics in the [CONTRIBUTING](https://github.com/anuvyklack/hydra.nvim/blob/master/CONTRIBUTING.md)
+You can read about the internal mechanics in the [CONTRIBUTING](https://github.com/nvimtools/hydra.nvim/blob/main/CONTRIBUTING.md)
 
 
 <!-- vim: set tw=90: -->
