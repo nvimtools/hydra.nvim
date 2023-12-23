@@ -151,7 +151,12 @@ Feel free to add your own or edit the existing ones!
 To install with [packer](https://github.com/wbthomason/packer.nvim) use:
 
 ```lua
-use 'nvim-island/hydra.nvim'
+use 'nvimtools/hydra.nvim'
+```
+
+To install with [lazy.nvim](https://github.com/folke/lazy.nvim) use:
+```lua
+require("lazy").setup({"nvimtools/hydra.nvim"})
 ```
 
 ## How to create hydra
