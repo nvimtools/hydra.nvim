@@ -154,6 +154,11 @@ To install with [packer](https://github.com/wbthomason/packer.nvim) use:
 use 'nvimtools/hydra.nvim'
 ```
 
+To install with [lazy.nvim](https://github.com/folke/lazy.nvim) use:
+```lua
+require("lazy").setup({"nvimtools/hydra.nvim"})
+```
+
 ## How to create hydra
 
 To create hydra you need to call Hydra's constructor with input parameters table of the
@@ -632,5 +637,10 @@ But supported in pink hydra since it is a [layer](https://github.com/nvimtools/h
 
 You can read about the internal mechanics in the [CONTRIBUTING](https://github.com/nvimtools/hydra.nvim/blob/main/CONTRIBUTING.md)
 
+## Thanks
+
+- [anuvyklack](https://github.com/anuvyklack/) for creating the original hydra.nvim that
+  this is forked from
+- [hydra](https://github.com/abo-abo/hydra) for existing
 
 <!-- vim: set tw=90: -->
