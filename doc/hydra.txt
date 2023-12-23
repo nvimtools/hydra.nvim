@@ -181,7 +181,7 @@ need next plugins:
 MORE HYDRAS
 
 You can find more hydras in the project's wiki:
-https://github.com/anuvyklack/hydra.nvim/wiki
+https://github.com/nvimtools/hydra.nvim/wiki
 
 Feel free to add your own or edit the existing ones!
 
@@ -341,7 +341,7 @@ config			table
 		Pink color~
 
 		Pink hydra is of a different nature. It is a key-layer
-		https://github.com/anuvyklack/hydra.nvim/tree/master/lua/hydra/layer
+		https://github.com/nvimtools/hydra.nvim/tree/master/lua/hydra/layer
 		inside, so all keys except overwritten are work as usual. Even
 		`[count]` prefixes.
 
@@ -474,7 +474,7 @@ config			table
 			auto-generated hint.
 
 		funcs			table<string, fun():string>
-					default: https://github.com/anuvyklack/hydra.nvim/blob/master/lua/hydra/hint/vim-options.lua
+					default: https://github.com/nvimtools/hydra.nvim/blob/master/lua/hydra/hint/vim-options.lua
 					parent table: `config.hint`
 			Table where keys are function names and values are
 			functions them self. Each function should return string.
@@ -554,7 +554,7 @@ heads			table[]
 					parent table: {opts}
 			Only relevant for `pink` hydra. For all others will be
 			skipped. The `pink` hydra is a layer
-			https://github.com/anuvyklack/hydra.nvim/tree/master/lua/hydra/layer
+			https://github.com/nvimtools/hydra.nvim/tree/master/lua/hydra/layer
 			inside, and Layer binds its keymaps buffer local, which
 			makes flag `nowait` available. See |:map-<nowait>|
 
@@ -598,10 +598,10 @@ hint			multiline string
 	shown. And later this function will be called every time when hydra head
 	will be pressed and the hint will be updated with the function result
 	string. Some functions are already built-in, you can find them in next
-	file: https://github.com/anuvyklack/hydra.nvim/blob/master/lua/hydra/hint/vim-options.lua
+	file: https://github.com/nvimtools/hydra.nvim/blob/master/lua/hydra/hint/vim-options.lua
 	You may submit or request some others which you think may be useful.
 	The using of this feature is shown here:
-	https://github.com/anuvyklack/hydra.nvim/wiki/Vim-Options
+	https://github.com/nvimtools/hydra.nvim/wiki/Vim-Options
 
 	If you pass no `hint`, then one line hint will be generated automatically.
 	The keys and their descriptions will be placed in the order heads were
@@ -695,7 +695,7 @@ DRAWBACKS						       *hydra-drawbacks*
 
 `[count]` is not supported in a red, amaranth and teal hydras (see `:help count`).
 But supported in pink hydra since it is a layer:
-https://github.com/anuvyklack/hydra.nvim/tree/master/lua/hydra/layer
+https://github.com/nvimtools/hydra.nvim/tree/master/lua/hydra/layer
 
 --------------------------------------------------------------------------------
  vim:ft=help:tw=80:isk=!-~,^*,^\|,^\":ts=8:noet:norl:
