@@ -183,7 +183,7 @@ end
 function util.warn_deprecated(option, config)
    local deprecation_notice = deprecated_opts[option]
    if deprecation_notice and not deprecation_notice.warned then
-      local message = string.format('Option "%s" has been deprecated and will be removed on %s', option, deprecation_notice.date)
+      local message = string.format('[Hydra.nvim] Option "%s" has been deprecated and will be removed on %s', option, deprecation_notice.date)
       if deprecation_notice.hint then
          message = string.format("%s -- See %s", message, deprecation_notice.hint)
       end
