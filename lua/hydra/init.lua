@@ -4,6 +4,7 @@ local options = require('hydra.lib.meta-accessor')
 local util = require('hydra.lib.util')
 local termcodes = util.termcodes
 local api = vim.api
+require("hydra.lib.deprecations")
 
 ---Currently active hydra
 ---@type Hydra | nil
@@ -106,8 +107,8 @@ function Hydra:initialize(input)
    self.heads = {}
    self.options = options('hydra.options')
    self.plug_wait = string.format('<Plug>(Hydra%d_wait)', self.id)
-   self.config = util.megre_config(default_config, input.config or {})
-
+   self.config = util.merge_config(default_config, input.config or {})
+   util.process_deprecations(self.config)
    do
       if not self.config.desc then
          if self.name then
