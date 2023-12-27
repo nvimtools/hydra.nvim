@@ -1,6 +1,6 @@
 # How does it work
 
-Every hydra (except pink) is an infinite chain of `<Plug>(...)` kyebindings.
+Every hydra (except pink) is an infinite chain of `<Plug>(...)` keybindings.
 
 To enter Hydra used
 

@@ -408,10 +408,20 @@ hint.
 
     The offset from the nearest editor border.
 
-  - **`border`**   `"single" | "double" | "rounded" | "solid" | "shadow" | "none" | string[]`  (default: `"none"`)\
+  - **`float_opts`**   `table`
     (valid when `type` is `"window"`)
 
-    The border of the hint window. See `:help nvim_open_win()`
+    Options passed to `nvim_open_win()`, see `:h nvim_open_win()`. This is how you set the
+    border. Values set here are merged with the following defaults:
+
+    ```lua
+    {
+      -- row, col, height, width, relative, and anchor should not be overridden
+      style = 'minimal',
+      focusable = false,
+      noautocmd = true,
+    }
+    ```
 
   - **`show_name`**   `boolean`   (default: `true`)
 
@@ -421,7 +431,7 @@ hint.
 
     Table where keys are function names and values are functions them self. Each
     function should return string. This functions can be required from `hint` with
-    `%{func_name}` syntaxis.
+    `%{func_name}` syntax.
 
 ### Hydra's heads
 
@@ -577,6 +587,8 @@ HydraPink       #ff55de
 
 - `HydraHint` — linked to `NormalFloat`, defines the fore- and background of the hint window;
 - `HydraBorder` —  linked to `FloatBorder`, defines the fore- and background of the border.
+- `HydraTitle` — linked to `FloatTitle`, hl for the window title
+- `HydraFooter` — linked to `FloatFooter`, hl for the window footer (only in nvim 0.10.0+)
 
 ## Keymap utility functions
 

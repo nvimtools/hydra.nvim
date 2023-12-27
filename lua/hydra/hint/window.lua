@@ -88,18 +88,18 @@ function HintAutoWindow:_make_buffer()
 end
 
 function HintAutoWindow:_make_win_config()
-   self.win_config = {
-      relative = 'editor',
-      anchor = 'SW',
+   self.win_config = vim.tbl_deep_extend("force", {
+      relative = "editor",
+      anchor = "SW",
       row = vim.o.lines - vim.o.cmdheight - 1 - self.config.offset,
       col = 1,
-      width  = vim.o.columns,
+      width = vim.o.columns,
       height = 1,
-      style = 'minimal',
+      style = "minimal",
       border = self.config.border,
       focusable = false,
       noautocmd = true,
-   }
+   }, self.config.float_opts or {})
 end
 
 function HintAutoWindow:show()
@@ -116,7 +116,11 @@ function HintAutoWindow:show()
    local win = Window(winid)
    self.win = win
 
-   win.wo.winhighlight = 'NormalFloat:HydraHint,FloatBorder:HydraBorder'
+   local winhl = 'NormalFloat:HydraHint,FloatBorder:HydraBorder,FloatTitle:HydraTitle'
+   if vim.version().minor >= 10 then
+      winhl = winhl .. ',FloatFooter:HydraFooter'
+   end
+   win.wo.winhighlight = winhl
    win.wo.conceallevel = 3
    win.wo.foldenable = false
    win.wo.wrap = false
@@ -286,15 +290,14 @@ function HintManualWindow:_make_win_config()
    local offset = self.config.offset
    local anchor
 
-   self.win_config = {
+   self.win_config = vim.tbl_deep_extend('force', {
       relative = 'editor',
       width  = self.win_width,
       height = self.win_height,
       style = 'minimal',
-      border = self.config.border,
       focusable = false,
       noautocmd = true,
-   }
+   }, self.config.float_opts or {})
 
    if pos[1] == 'top' then
       anchor = 'N'

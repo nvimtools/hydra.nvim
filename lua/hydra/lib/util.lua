@@ -147,6 +147,7 @@ end
 ---@return string[]
 function util.split_string(text)
    local r = {}
+   ---@type integer | nil
    local stop = 0
    while stop do
       _, stop = text:find('%s+%S+')

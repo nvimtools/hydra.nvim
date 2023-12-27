@@ -52,7 +52,7 @@ _G.active_keymap_layer = nil
 ---@field enter_keymaps table
 ---@field layer_keymaps table
 ---@field options hydra.MetaAccessor
----@field timer vim.loop.Timer | nil
+---@field timer uv_timer_t | nil
 ---@field saved_keymaps table
 local Layer = class()
 
@@ -403,7 +403,7 @@ function Layer:_setup_keymaps(bufnr)
    end
 end
 
----Save key mappings overwritten by Layer for the paticular buffer
+---Save key mappings overwritten by Layer for the particular buffer
 ---for future restore.
 ---@param bufnr integer the buffer ID for which to save keymaps
 function Layer:_save_keymaps(bufnr)
