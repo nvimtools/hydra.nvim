@@ -141,16 +141,6 @@ function Hydra:initialize(input)
       if self.config.hint and not self.config.hint.type then
          self.config.hint.type = input.hint and 'window' or 'cmdline'
       end
-
-      -- TODO: remove in future version
-      _NOTIFY_BORDER_DEPRECATION = _NOTIFY_BORDER_DEPRECATION or false
-      if self.config.hint.border ~= nil and not _NOTIFY_BORDER_DEPRECATION then
-         _NOTIFY_BORDER_DEPRECATION = true
-         vim.notify(
-            "[Hydra] config.hint.border is deprecated, use config.hint.float_opts.border instead",
-            vim.log.levels.WARN
-         )
-      end
    end
 
    local heads_spec = {}
