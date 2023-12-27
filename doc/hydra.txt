@@ -1,103 +1,120 @@
-hydra.txt                                                                  *hydra*
-================================================================================
+*hydra.txt*            For NVIM v0.8.0           Last change: 2023 December 27
 
- ██   ██ 🭖█🭀  🭋█🭡 █████🭍🬾  █████🭍🬾   🭋██🭀     ⠄⠄⣴⣶⣤⡤⠦⣤⣀⣤⠆⠄⠄⠄⠄⠄⣈⣭⣭⣿⣶⣿⣦⣼⣆⠄⠄⠄⠄⠄⠄⠄⠄
- ██   ██ 🭦█🭐  🭅█🭛 ██  🭦█🭎  ██  🭦█🭎   🭅██🭐     ⠄⠄⠄⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦⠄⠄⠄⠄⠄⠄
- ██   ██  🭖█🭀🭋█🭡  ██   ██  ██   ██  🭋█🭡🭖█🭀    ⠄⠄⠄⠄⠄⠈⠄⠄⠄⠈⢿⣿⣟⠦⠄⣾⣿⣿⣷⠄⠄⠄⠄⠻⠿⢿⣿⣧⣄⠄⠄⠄⠄
- ██   ██  🭦█🭐🭅█🭛  ██   ██  ██   ██  🭅█🭛🭦█🭐    ⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⣸⣿⣿⢧⠄⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄⠄⠄⠄
- ██   ██   🭖██🭡   ██   ██  ██  🭊█🭡 🭋█🭡  🭖█🭀   ⠄⠄⢀⠄⠄⠄⠄⠄⠄⢠⣿⣿⣿⠈⠄⠄⠡⠌⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀⠄⠄
- ███████   🭦██🭛   ██   ██  █████🭠🭗 🭅█🭛██🭦█🭐   ⠄⠄⢠⣧⣶⣥⡤⢄⠄⣸⣿⣿⠘⠄⠄⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄⠄
- ██   ██    ██    ██   ██  ██ 🭖█🭀  █🭡    🭖█🭀  ⠄⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷⠄⠄⠄⢊⣿⣿⡏⠄⠄⢸⣿⣿⡇⠄⢀⣠⣄⣾⠄⠄⠄
- ██   ██    ██    ██   ██  ██ 🭦█🭐  █🭛    🭦█🭐  ⣠⣿⠿⠛⠄⢀⣿⣿⣷⠘⢿⣿⣦⡀⠄⢸⢿⣿⣿⣄⠄⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄⠄
- ██   ██    ██    ██   ██  ██  🭖█🭀 🭡      🭖█🭀 ⠙⠃⠄⠄⠄⣼⣿⡟⠌⠄⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿⠐⣿⣿⡇⠄⠛⠻⢷⣄
- ██   ██    ██    ██   ██  ██  🭦█🭐 🭛      🭦█🭐 ⠄⠄⠄⠄⠄⢻⣿⣿⣄⠄⠄⠄⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟⠄⠫⢿⣿⡆⠄⠄⠄⠁
- ██   ██    ██    ██████🭠  ██   🭖█🭀        🭖█🭀 ⠄⠄⠄⠄⠄⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃⠄⠄⠄⠄
+==============================================================================
+Table of Contents                                    *hydra-table-of-contents*
 
-================================================================================
-CONTENTS
+1. Hydra.nvim                                               |hydra-hydra.nvim|
+  - Description for Poets             |hydra-hydra.nvim-description-for-poets|
+  - Description for Pragmatics   |hydra-hydra.nvim-description-for-pragmatics|
+  - Sample Hydras                             |hydra-hydra.nvim-sample-hydras|
+  - Installation                               |hydra-hydra.nvim-installation|
+  - How to create hydra                 |hydra-hydra.nvim-how-to-create-hydra|
+  - Public methods                           |hydra-hydra.nvim-public-methods|
+  - Highlight                                     |hydra-hydra.nvim-highlight|
+  - Keymap utility functions       |hydra-hydra.nvim-keymap-utility-functions|
+  - Statusline                                   |hydra-hydra.nvim-statusline|
+  - Drawbacks                                     |hydra-hydra.nvim-drawbacks|
+  - How it works under the hood |hydra-hydra.nvim-how-it-works-under-the-hood|
+  - Thanks                                           |hydra-hydra.nvim-thanks|
 
-Hydra.nvim............................................................|hydra.nvim|
-Description for Poets................................|hydra-description_for_poets|
-Description for Pragmatics......................|hydra-description_for_pragmatics|
-Sample Hydras......................................................|hydra-samples|
-How to create hydra....................................|hydra-how_to_create_hydra|
-  • name..............................................................|hydra-name|
-  • mode..............................................................|hydra-mode|
-  • body..............................................................|hydra-body|
-  • config..........................................................|hydra-config|
-     • exit....................................................|hydra-config.exit|
-     • foreign_keys....................................|hydra-config.foreign_keys|
-     • color..................................................|hydra-config.color|
-       • More about colors concept..................................|hydra-colors|
-       • Amaranth color...........................................|hydra-amaranth|
-       • Blue and teal colors.........................................|hydra-blue|
-       • Pink color...................................................|hydra-pink|
-    • buffer.................................................|hydra-config.buffer|
-    • invoke_on_body.................................|hydra-config.invoke_on_body|
-    • desc.................................................... |hydra-config.desc|
-    • on_enter and on_exit.................................|hydra-config.on_enter|
-      • meta-accessors......................................|hydra-meta-accessors|
-    • on_key.................................................|hydra-config.on_key|
-    • timeout...............................................|hydra-config.timeout|
-    • hint.....................................................|hydra-config.hint|
-  • Hydra's heads....................................................|hydra-heads|
-    • {lhs}............................................................|hydra-lhs|
-    • {rhs}............................................................|hydra-rhs|
-    • {opts}..........................................................|hydra-opts|
-      • private...............................................|hydra-head.private|
-      • exit.....................................................|hydra-head.exit|
-      • exit_before.......................................|hydra-head.exit_before|
-      • on_key.................................................|hydra-head.on_key|
-      • desc.....................................................|hydra-head.desc|
-      • expr, silent.............................................|hydra-head.expr|
-      • nowait.................................................|hydra-head.nowait|
-      • mode.....................................................|hydra-head.mode|
-  • hint..............................................................|hydra-hint|
-Public methods.....................................................|hydra-methods|
-Highlight........................................................|hydra-highlight|
-Keymap utility functions.......................................|hydra-keymap_util|
-Statusline......................................................|hydra-statusline|
-Drawbacks........................................................|hydra-drawbacks|
+==============================================================================
+1. Hydra.nvim                                               *hydra-hydra.nvim*
 
-================================================================================
-HYDRA.NVIM                                                            *hydra.nvim*
 
-This is the Neovim port of the famous Emacs Hydra package.
 
---------------------------------------------------------------------------------
-DESCRIPTION FOR POETS                                *hydra-description_for_poets*
+This is the Neovim implementation of the famous Emacs Hydra
+<https://github.com/abo-abo/hydra> package.
 
-Once you summon the Hydra through the prefixed binding (the body + any one head),
-all heads can be called in succession with only a short extension.
 
-The Hydra is vanquished once Hercules, any binding that isn't the Hydra's head,
-arrives.  Note that Hercules, besides vanquishing the Hydra, will still serve
-his original purpose, calling his proper command.  This makes the Hydra very
-seamless.
+DESCRIPTION FOR POETS                 *hydra-hydra.nvim-description-for-poets*
 
---------------------------------------------------------------------------------
-DESCRIPTION FOR PRAGMATICS                      *hydra-description_for_pragmatics*
+Once you summon the Hydra through the prefixed binding (the body + any one
+head), all heads can be called in succession with only a short extension.
 
-Imagine you want to change the size of your current window. Vim allows you to do
-it with `<C-w>+`, `<C-w>-`, `<C-w><`, `<C-w>>` bindings. So, you have to press
-`<C-w>+<C-w>+<C-w>+<C-w><<C-w><<C-w><...` as many times as you need (I know about
-count prefixes, but I was never fun of them).  Hydra allows you to press `<C-w>`
-just once and then get access to any `<C-w>...` bindings without pressing the
-prefix again: `<C-w>+++++--<<<<`.  Or buffer side scrolling: instead of
-`zlzlzlzlzlzl...` press `zlllllllllhhhl` to freely scroll buffer left and right.
-Any key other than bind to a hydra will stop hydra state and do what they should.
+The Hydra is vanquished once Hercules, any binding that isn’t the Hydra’s
+head, arrives. Note that Hercules, besides vanquishing the Hydra, will still
+serve his original purpose, calling his proper command. This makes the Hydra
+very seamless.
 
-Hydra also allows assigning a custom hint to such group of keybindings to allows
-you an easy glance at what you can do.
->
---------------------------------------------------------------------------------
-SAMPLE HYDRAS							   *hydra-samples*
 
-SIDE SCROLL
+DESCRIPTION FOR PRAGMATICS       *hydra-hydra.nvim-description-for-pragmatics*
+
+Imagine you want to change the size of your current window. Vim allows you to
+do it with `<C-w>+`, `<C-w>-`, `<C-w><`, `<C-w>>` bindings. So, you have to
+press `<C-w>+<C-w>+<C-w>+<C-w><<C-w><<C-w><...` as many times as you need (I
+know about count prefixes, but I was never fond of them). Hydra allows you to
+press `<C-w>` just once and then get access to any `<C-w>...` bindings without
+pressing the prefix again: `<C-w>+++++--<<<<`. Or buffer side scrolling:
+instead of `zlzlzlzlzlzl...` press `zlllllllllhhhl` to freely scroll buffer
+left and right. Any key other than bind to a hydra will stop hydra state and do
+what they should.
+
+Hydra also allows assigning a custom hint to such group of keybindings to
+allows you an easy glance at what you can do.
+
+If you want to quickly understand the concept, you can watch the original Emacs
+Hydra video demo <https://www.youtube.com/watch?v=_qZliI1BKzI>
+
+- |hydra-sample-hydras|
+    - |hydra-side-scroll|
+    - |hydra-git-submode|
+    - |hydra-telescope-menu|
+    - |hydra-frequently-used-options|
+    - |hydra-more-hydras|
+- |hydra-installation|
+- |hydra-how-to-create-hydra|
+    - |hydra-`name`|
+    - |hydra-`mode`|
+    - |hydra-`body`|
+    - |hydra-`config`|
+        - |hydra-`exit`|
+        - |hydra-`foreign_keys`|
+        - |hydra-`color`|
+            - |hydra-more-about-colors-concept|
+            - |hydra-amaranth-color|
+            - |hydra-blue-and-teal-colors|
+            - |hydra-pink-color|
+        - |hydra-`buffer`|
+        - |hydra-`invoke_on_body`|
+        - |hydra-`desc`|
+        - |hydra-`on_enter`-and-`on_exit`|
+            - |hydra-meta-accessors|
+        - |hydra-`on_key`|
+        - |hydra-`timeout`|
+        - |hydra-`hint`|
+    - |hydra-hydra’s-heads|
+        - |hydra-`head`|
+        - |hydra-`rhs`|
+        - |hydra-`opts`|
+            - |hydra-`private`|
+            - |hydra-`exit`|
+            - |hydra-`exit_before`|
+            - |hydra-`on_key`|
+            - |hydra-`desc`|
+            - |hydra-`expr`,-`silent`|
+            - |hydra-`nowait`|
+            - |hydra-`mode`|
+    - |hydra-`hint`|
+- |hydra-public-methods|
+- |hydra-highlight|
+- |hydra-keymap-utility-functions|
+- |hydra-statusline|
+- |hydra-drawbacks|
+- |hydra-how-it-works-under-the-hood|
+
+
+SAMPLE HYDRAS                                 *hydra-hydra.nvim-sample-hydras*
+
+
+SIDE SCROLL ~
 
 Simple hydra to scroll screen to the side with auto generated hint.
->
+
+
+
+>lua
     local Hydra = require('hydra')
+    
     Hydra({
        name = 'Side scroll',
        mode = 'n',
@@ -111,86 +128,60 @@ Simple hydra to scroll screen to the side with auto generated hint.
     })
 <
 
-GIT
 
-A full fledged git "submode".  The code is huge but, simple. For this hydra you
-need next plugins:
+GIT SUBMODE ~
 
-- Gitsigns	https://github.com/lewis6991/gitsigns.nvim
-- Neogit	https://github.com/TimUntersberger/neogit
->
- local Hydra = require('hydra')
- local gitsigns = require('gitsigns')
+A full fledged git "submode".
 
- local hint = [[
- _J_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
- _K_: prev hunk   _u_: undo stage hunk   _p_: preview hunk   _B_: blame show full
- ^ ^              _S_: stage buffer      ^ ^                 _/_: show base file
- ^
- ^ ^              _<Enter>_: Neogit              _q_: exit
- ]]
+Link to the code <https://github.com/nvimtools/hydra.nvim/wiki/Git>
 
- Hydra({
- hint = hint,
- config = {
-   color = 'pink',
-   invoke_on_body = true,
-   hint = {
-      position = 'bottom',
-      border = 'rounded'
-   },
-   on_enter = function()
-      vim.bo.modifiable = false
-      gitsigns.toggle_signs(true)
-      gitsigns.toggle_linehl(true)
-   end,
-   on_exit = function()
-      gitsigns.toggle_signs(false)
-      gitsigns.toggle_linehl(false)
-      gitsigns.toggle_deleted(false)
-      vim.cmd 'echo' -- clear the echo area
-   end
- },
- mode = {'n','x'},
- body = '<leader>g',
- heads = {
-   { 'J', function()
-         if vim.wo.diff then return ']c' end
-         vim.schedule(function() gitsigns.next_hunk() end)
-         return '<Ignore>'
-      end, { expr = true } },
-   { 'K', function()
-         if vim.wo.diff then return '[c' end
-         vim.schedule(function() gitsigns.prev_hunk() end)
-         return '<Ignore>'
-      end, { expr = true } },
-   { 's', ':Gitsigns stage_hunk<CR>', { silent = true } },
-   { 'u', gitsigns.undo_stage_hunk },
-   { 'S', gitsigns.stage_buffer },
-   { 'p', gitsigns.preview_hunk },
-   { 'd', gitsigns.toggle_deleted, { nowait = true } },
-   { 'b', gitsigns.blame_line },
-   { 'B', function() gitsigns.blame_line{ full = true } end },
-   { '/', gitsigns.show, { exit = true } }, -- show the base of the file
-   { '<Enter>', '<cmd>Neogit<CR>', { exit = true } },
-   { 'q', nil, { exit = true, nowait = true } },
- }
- })
+
+
+
+TELESCOPE MENU ~
+
+You can also create a fancy menu to easy recall seldom used mappings.
+
+Link to the code <https://github.com/nvimtools/hydra.nvim/wiki/Telescope>
+
+
+
+
+FREQUENTLY USED OPTIONS ~
+
+Link to the code <https://github.com/nvimtools/hydra.nvim/wiki/Vim-Options>
+
+
+
+
+MORE HYDRAS ~
+
+You can find more hydras in the wiki
+<https://github.com/nvimtools/hydra.nvim/wiki>. Feel free to add your own or
+edit the existing ones!
+
+
+INSTALLATION                                   *hydra-hydra.nvim-installation*
+
+To install with packer <https://github.com/wbthomason/packer.nvim> use:
+
+>lua
+    use 'nvimtools/hydra.nvim'
 <
 
-MORE HYDRAS
+To install with lazy.nvim <https://github.com/folke/lazy.nvim> use:
 
-You can find more hydras in the project's wiki:
-https://github.com/nvimtools/hydra.nvim/wiki
+>lua
+    require("lazy").setup({"nvimtools/hydra.nvim"})
+<
 
-Feel free to add your own or edit the existing ones!
 
---------------------------------------------------------------------------------
-HOW TO CREATE HYDRA
+HOW TO CREATE HYDRA                     *hydra-hydra.nvim-how-to-create-hydra*
 
-To create hydra you need to call Hydra's constructor with input parameters table
-of the next form:
->
+To create hydra you need to call Hydra’s constructor with input parameters
+table of the next form:
+
+>lua
     local Hydra = require('hydra')
     Hydra({
         name = "Hydra's name",
@@ -200,502 +191,545 @@ of the next form:
         body = '<leader>o',
         heads = {...},
     })
+<
 
 Each of the fields of this table is described in details below.
 
-								    *hydra-name*
-name			string (optional)
-	The name of the hydra. Not necessary, used only in auto-generated hint.
 
-								    *hydra-mode*
-mode			string | string[]
-			default: `"n"`
-	Mode or modes in which this hydra will exist. Same format as
-	`vim.keymap.set()` accepts.
-								    *hydra-body*
-body			string (optional)
-	To summon the hydra you need to press in sequence keys corresponds to
-	`body` + any `head`.  For example, if body is `z` and heads are: `a`, `b`, `c`, you
-	can invoke hydra with any of the `za`, `zb`, `zc` keybindings.  Hydra without
-	body can only be summoned through `Hydra:activate()` method.
+NAME ~
 
-								  *hydra-config*
-config			table
-	With this table, you can set the behavior of the whole hydra, which
-	later can be customized for each head particularly.  Below is a list of
-	all options.
+`string` (optional)
 
-							     *hydra-config.exit*
-	exit			boolean
-				default: `false`
-				parent table: `config`
-		The `exit` option (heads can override it) defines what will happen
-		after executing head's command:
+The name of the hydra. Not necessary, used only in auto-generated hint.
 
-		`exit = false`
-			means that the hydra state will continue you'll still
-			see the hint and be able to use hydra bindings;
 
-		`exit = true`
-			means that the hydra state will stop.
+MODE ~
 
-						     *hydra-config.foreign_keys*
-	foreign_keys		`"warn"` | `"run"` | `nil`
-				default: `nil`
-				parent table: `config`
-		The `foreign_keys` option belongs to the body and decides what to
-		do when a key is pressed that doesn't belong to any head:
+`string | string[]` default: `"n"`
 
-		`foreign_keys = nil`
-			means that the hydra state will stop and the foreign key
-			will do whatever it was supposed to do if there was no
-			hydra state.
+Mode or modes in which this hydra will exist. Same format as `vim.keymap.set()`
+accepts.
 
-		`foreign_keys = "warn"`
-			will not stop the hydra state, but instead will issue
-			a warning without running the foreign key.
 
-		`foreign_keys = "run"`
-			will not stop the hydra state, and try to run the
-			foreign key.
-							    *hydra-config.color*
-	color			`"red"` | `"amaranth"` | `"teal"` | `"pink"`
-				default: `"red"`
-				parent table: `config`
-		The `color` option is a shortcut for both `exit` and `foreign_keys`
-		options and aggregates them in the following way:
+BODY ~
+
+`string` (optional)
+
+To summon the hydra you need to press in sequence keys corresponds to `body` +
+any `head`. For example, if body is `z` and heads are: `a`, `b`, `c`, you can
+invoke hydra with any of the `za`, `zb`, `zc` keybindings.
+
+Hydra without body can only be summoned through `Hydra:activate()` method.
+
+
+CONFIG ~
+
+`table`
+
+With this table, you can set the behavior of the whole hydra, which later can
+be customized for each head particularly. Below is a list of all options.
+
+------------------------------------------------------------------------------
+
+EXIT
+
+`boolean` default: `false` parent table: `config`
+
+The `exit` option (heads can override it) defines what will happen after
+executing head’s command:
+
+- `exit = false` (the default) means that the hydra state will continue — you’ll still see
+    the hint and be able to use hydra bindings;
+- `exit = true` means that the hydra state will stop.
+
+
+FOREIGN_KEYS
+
+`"warn" | "run" | nil` default: `nil` parent table: `config`
+
+The `foreign_keys` option belongs to the body and decides what to do when a key
+is pressed that doesn’t belong to any head:
+
+- `foreign_keys = nil` (the default) means that the hydra state will stop and the foreign
+    key will do whatever it was supposed to do if there was no hydra state.
+- `foreign_keys = "warn"` will not stop the hydra state, but instead will issue a warning
+    without running the foreign key.
+- `foreign_keys = "run"` will not stop the hydra state, and try to run the foreign key.
+
+
+COLOR
+
+`"red" | "amaranth" | "teal" | "pink"` default: `"red"` parent table: `config`
+
+The `color` option is a shortcut for both `exit` and `foreign_keys` options and
+aggregates them in the following way:
+
 >
-		    | color    | toggle                             |
-		    |----------+------------------------------------|
-		    | red      |                                    |
-		    | blue     | exit = true                        |
-		    | amaranth | foreign_keys = 'warn'              |
-		    | teal     | foreign_keys = 'warn', exit = true |
-		    | pink     | foreign_keys = 'run'               |
+    | color    | toggle                             |
+    |----------+------------------------------------|
+    | red      |                                    |
+    | blue     | exit = true                        |
+    | amaranth | foreign_keys = 'warn'              |
+    | teal     | foreign_keys = 'warn', exit = true |
+    | pink     | foreign_keys = 'run'               |
 <
-		It's also a trick to make you instantly aware of the current
-		hydra keys that you're about to press: the keys will be
-		highlighted with the appropriate color.
 
-		Note: The `exit` and `foreign_keys` options are higher priority than
-		`color` option and can't be overridden by it.  I.e, if manually
-		set values of `exit` and `foreign_keys` options contradict the color
-		option value, then exactly thees values will be taken into
-		account and for `color` option the matching value will be
-		automatically set
+It’s also a trick to make you instantly aware of the current hydra keys that
+you’re about to press: the keys will be highlighted with the appropriate
+color.
 
-								  *hydra-colors*
-		More about colors concept~
+**Note:** The `exit` and `foreign_keys` options are higher priority than
+`color` option and can’t be overridden by it. I.e, if manually set values of
+`exit` and `foreign_keys` options contradict the color option value, then
+exactly thees values will be taken into account and for `color` option the
+matching value will be automatically set
 
-		Each hydra head has a basic associated color, red or blue, that
-		determines whether or not the hydra will continue after the head
-		is called:
 
-		- red head will execute the command and continue the state
-		- blue head will execute the command and stop the state
+MORE ABOUT COLORS CONCEPT
 
-		They may have a reddish or a bluish face that isn't exactly red
-		or blue, but that's what they are underneath.
+Each hydra head has a basic associated color, red or blue, that determines
+whether or not the hydra will continue after the head is called:
 
-		Overall, the hydra body can have one of five variants of the
-		basic colors: amaranth, teal, pink, red, blue.  They (according
-		to basic color) determines the default behavior of all the
-		heads; and determines what happens when a key that is not
-		associated to a head is pressed. The following table summarizes
-		the effects of the different colors.
->
-	| Body Color | Basic color | Executing NON-HEAD    | Executing HEAD |
-	|------------|-------------|-----------------------|----------------|
-	| amaranth   | red         | Disallow and Continue | Continue       |
-	| teal       | blue        | Disallow and Continue | Quit           |
-	| pink       | red         | Allow and Continue    | Continue       |
-	| red        | red         | Allow and Quit        | Continue       |
-	| blue       | blue        | Allow and Quit        | Quit           |
+- red head will execute the command and continue the state
+- blue head will execute the command and stop the state
+
+They may have a reddish or a bluish face that isn’t exactly red or blue, but
+that’s what they are underneath.
+
+Overall, the hydra body can have one of five variants of the basic colors:
+amaranth, teal, pink, red, blue. They (according to basic color) determines the
+default behavior of all the heads; and determines what happens when a key that
+is not associated to a head is pressed. The following table summarizes the
+effects of the different colors.
+
+  Body Color   Basic color   Executing NON-HEAD      Executing HEAD
+  ------------ ------------- ----------------------- ----------------
+  amaranth     red           Disallow and Continue   Continue
+  teal         blue          Disallow and Continue   Quit
+  pink         red           Allow and Continue      Continue
+  red          red           Allow and Quit          Continue
+  blue         blue          Allow and Quit          Quit
+
+AMARANTH COLOR
+
+The amaranth color wasn’t chosen by accident because it is the variation of
+the red color, but it has the sense underneath. According to Wikipedia
+<http://en.wikipedia.org/wiki/Amaranth>:
+
+
+  The word amaranth comes from the Greek word amaranton, meaning "unwilting"
+  (from the verb marainesthai, meaning "wilt"). The word was applied to amaranth
+  because it did not soon fade and so symbolized immortality.
+Hydras with amaranth body are impossible to quit with any binding except a blue
+head.
+
+
+BLUE AND TEAL COLORS
+
+A blue hydra has little sense in Vim since it works exactly like standard Vim
+multi-key keybinding with addition you can add a custom hint to it.
+
+A teal hydra working the same way, except it blocks all other keys which are
+not hydra heads, what can be useful.
+
+
+PINK COLOR
+
+Pink hydra is of a different nature. It is a key-layer
+<https://github.com/nvimtools/hydra.nvim/tree/main/lua/hydra/layer> inside, so
+all keys except overwritten are work as usual. Even `[count]` prefixes.
+
+
+BUFFER
+
+`true | number` parent table: `config`
+
+Define hydra only for particular buffer. If `true` — the current buffer will
+be used.
+
+
+INVOKE_ON_BODY
+
+`boolean` default: `false` parent table: `config`
+
+By default, to invoke the hydra you need to press in sequence keys corresponds
+to `body` + any non-private `head` (about private heads see later). This option
+allows you to summon hydra by pressing only the `body` keys.
+
+
+DESC
+
+`string` default: `[Hydra]` + name parent table: `config`
+
+If you set `invoke_on_body` option, then you can pass here the description for
+the hydra body key sequence.
+
+
+ON_ENTER AND ON_EXIT
+
+parent table: `config`
+
+Functions that will be called on enter and on exit hydra.
+
+
+META-ACCESSORS
+
+Inside the `on_enter` functions the `vim.o`, `vim.go`, `vim.bo` and `vim.wo`
+meta-accessors <https://github.com/nanotee/nvim-lua-guide#using-meta-accessors>
+are redefined to work the way you think they should. If you want some option
+value to be temporary changed while Hydra is active, you need just set it with
+one of this meta-accessor in the `on_enter` function. And that’s it. No need
+to set it back in `on_exit` function. All other will be done automatically in
+the backstage.
+
+>lua
+    config = {
+        on_enter = function()
+           print('Hydra enter')
+           vim.bo.modifiable = false  -- temporary set `nomodifiable` while Hydra is active
+        end,
+        on_exit = function()
+           print('Hydra exit')
+           -- No need to set modifiable back here
+        end
+    }
 <
-								*hydra-amaranth*
-		Amaranth color~
 
-		The amaranth color wasn't chosen by accident because it is the
-		variation of the red color, but it has the sense underneath.
-		According to Wikipedia http://en.wikipedia.org/wiki/Amaranth :
 
-		> The word amaranth comes from the Greek word amaranton, meaning
-		> "unwilting" (from the verb marainesthai, meaning "wilt"). The
-		> word was applied to amaranth because it did not soon fade and
-		> so symbolized immortality.
+ON_KEY
 
-		Hydras with amaranth body are impossible to quit with any
-		binding except a blue head.
+parent table: `config`
 
-							 *hydra-blue* *hydra-teal*
-		Blue and teal colors	~
+Function that will be called **after** every hydra head.
 
-		A blue hydra has little sense in Vim since it works exactly like
-		standard Vim multi-key keybinding with addition you can add
-		a custom hint to it.
 
-		A teal hydra working the same way, except it blocks all other
-		keys which are not hydra heads, what can be useful.
+TIMEOUT
 
-								    *hydra-pink*
-		Pink color~
+`boolean | number` parent table: `config`
 
-		Pink hydra is of a different nature. It is a key-layer
-		https://github.com/nvimtools/hydra.nvim/tree/main/lua/hydra/layer
-		inside, so all keys except overwritten are work as usual. Even
-		`[count]` prefixes.
+The `timeout` option set a timer after which the hydra will be automatically
+disabled. Calling any head will refresh the timer. (see `:help timeout`, `:help
+timeoutlen`)
 
-							   *hydra-config.buffer*
-	buffer			`true` | number
-				parent table: `config`
-		Define hydra only for particular buffer.  If `true` — the current
-		buffer will be used.
+- `timeout = true` — enable timer and set its to `'timeoutlen'` option value;
+- `timeout = false` — disabled timer: the hydra will wait as long as you want,
+    until you manually cancel it;
+- `timeout = 5000` — set timer to desired amount of milliseconds.
 
-						   *hydra-config.invoke_on_body*
-	invoke_on_body		boolean
-				default: `false`
-				parent table: `config`
-		By default, to invoke the hydra you need to press in sequence
-		keys corresponds to `body` + any non-private `head` (about private
-		heads see later).  This option allows you to summon hydra by
-		pressing only the `body` keys.
 
-							     *hydra-config.desc*
-	desc			string
-				default: `'[Hydra]'` + name
-				parent table: `config`
-		If you set `invoke_on_body` option, then you can pass here the
-		description for the hydra body key sequence.
+HINT
 
-				    *hydra-config.on_enter* *hydra-config.on_exit*
-	on_enter
-	on_exit			function
-				parent table: `config`
-		Functions that will be called on enter and on exit hydra.
+`table | false` parent table: `config`
 
-							  *hydra-meta-accessors*
-		Meta-accessors~
+If `false` — doesn’t show hint. Or a table with settings for manually- or
+auto-generated hint.
 
-		Inside the `on_enter` functions the `vim.o`, `vim.go`, `vim.bo` and
-		`vim.wo` meta-accessors
-		https://github.com/nanotee/nvim-lua-guide#using-meta-accessors
-		are redefined to work the way you think they should.  If you
-		want some option value to be temporary changed while Hydra is
-		active, you need just set it with one of this meta-accessor in
-		the `on_enter` function.  And that's it. No need to set it back in
-		`on_exit` function. All other will be done automatically in the
-		backstage.
->
-		config = {
-		   on_enter = function()
-		      print('Hydra enter')
-		      -- temporary set `nomodifiable` while Hydra is active
-		      vim.bo.modifiable = false
-		   end,
-		   on_exit = function()
-		      print('Hydra exit')
-		      -- No need to set modifiable back here
-		   end
-		}
+- **type** `"window" | "cmdline" | "statusline"` (default: if hint passed:
+    `"window"`, else: `"cmdline"`)
+    - `"window"` — show hint in a floating window;
+    - `"cmdline"` — show hint in a echo area;
+    - `"statusline"` — show auto-generated hint in the statusline. If hint is
+        passed, then this value will be ignored and `"window"` will be used.
+- **position** `string` (default: `"bottom"`) (valid when `type` is `"window"`)
+    Set the position of the hint. Should be one from the next table:
+    >
+          top-left   |   top    |  top-right
+        -------------+----------+--------------
+         middle-left |  middle  | middle-right
+        -------------+----------+--------------
+         bottom-left |  bottom  | bottom-right
+    <
+- **offset** `number` (default: `0`) (valid when `type` is `"window"`)
+    The offset from the nearest editor border.
+- **float_opts** `table` (valid when `type` is `"window"`)
+    Options passed to `nvim_open_win()`, see |nvim_open_win()|. This is how you set
+    the border. Values set here are merged with the following defaults:
+    >lua
+        {
+          -- row, col, height, width, relative, and anchor should not be overridden
+          style = 'minimal',
+          focusable = false,
+          noautocmd = true,
+        }
+    <
+- **show_name** `boolean` (default: `true`)
+    Show hydras name or `HYDRA:` label at the beginning of an auto-generated hint.
+- **funcs** `table<string, fun():string>` (built-in functions
+    <https://github.com/nvimtools/hydra.nvim/blob/main/lua/hydra/hint/vim-options.lua>)
+    Table where keys are function names and values are functions them self. Each
+    function should return string. This functions can be required from `hint` with
+    `%{func_name}` syntax.
+
+
+HYDRA’S HEADS ~
+
+Each hydra’s head has the form:
+
+>lua
+    { head, rhs, opts }
 <
-							   *hydra-config.on_key*
-	on_key			function
-				parent table: `config`
-		Function that will be called after every hydra head.
 
-							  *hydra-config.timeout*
-	timeout			boolean | number
-				default: `false`
-				parent table: `config`
-		The `timeout` option set a timer after which the hydra will be
-		automatically disabled. Calling any head will refresh the timer
-		(see |timeout| and |timeoutlen)|.
+which is pretty-much compares to the signature of the `vim.keymap.set()`
+function.
 
-		`timeout = true`
-			enable timer and set its to `'timeoutlen'` option value;
 
-		`timeout = false`
-			disabled timer: the hydra will wait as long as you want,
-			until you manually cancel it;
+HEAD
 
-		`timeout = 5000`
-			set timer to desired amount of milliseconds.
+`string`
 
-							     *hydra-config.hint*
-	hint			table | `false`
-				parent table: `config`
-		If `false` — doesn't show hint, or a table with settings for
-		manually- or auto-generated |hydra-hint|.
+The `lhs` (left-hand-side) of the mapping, i.e the keys you press to call an
+action.
 
-		type			`"window"` | `"cmdline"` | `"statusline"`
-					default: if |hydra-hint| passed then
-					         `"window"` else `"cmdline"`
-					parent table: `config.hint`
-			• `"window"`
-				Show hint in a floating window.
 
-			• `"cmdline"`
-				Show hint in a echo area.
+RHS
 
-			• `"statusline"`
-				Show auto-generated hint in the statusline.
-				If |hydra-hint| is passed — this value will be
-				ignored and `"window"` will be used.
+`string | function | nil`
 
-		position		string
-					default: `"bottom"`
-					valid when `type` is `"window"`
-					parent table: `config.hint`
-			Set the position of the hint. Should be one from the
-			next table:
->
-			      top-left   |   top    |  top-right
-			    -------------+----------+--------------
-			     middle-left |  middle  | middle-right
-			    -------------+----------+--------------
-			     bottom-left |  bottom  | bottom-right
+Right-hand-side of the mapping. Can be `nil` which means just do nothing, but
+if you also want to pass `opts` table, you need to pass `nil` explicitly.
+
+
+OPTS
+
+`table`
+
+A table with head options to tune its behavior.
+
+
+PRIVATE
+
+`boolean`
+
+When the hydra hides (not active), the private head does not bounce outside.
+I.e., the private head is unreachable outside of the hydra state.
+
+
+EXIT
+
+`boolean`
+
+Stop the hydra state after executing a command corresponds to such head.
+
+**Note:** All exit heads are also private.
+
+**Note:** If no `exit` head is specified, the `<Esc>` key will be set by
+default.
+
+**Note:** Remind that `rhs` can be `nil`, so the pure escape head looks like
+this:
+
+>lua
+    { '<Esc>', nil, { exit = true } }
 <
-		offset			number
-					default: `0`
-					valid when `type` is `"window"`
-					parent table: `config.hint`
-			The offset from the nearest editor border.
 
-		border		`"single"` | `"double"` | `"rounded"` |
-				`"solid"` | `"shadow"` | `"none"` | string[]
-					default: `"none"`
-					valid when `type` is `"window"`
-			The border of the hint window. See |nvim_open_win()|
 
-		show_name		boolean
-					default: `true`
-					parent table: `config.hint`
-			Show a hydras name or `HYDRA:` label at the beginning of
-			auto-generated hint.
+EXIT_BEFORE
 
-		funcs			table<string, fun():string>
-					default: https://github.com/nvimtools/hydra.nvim/blob/main/lua/hydra/hint/vim-options.lua
-					parent table: `config.hint`
-			Table where keys are function names and values are
-			functions them self. Each function should return string.
-			This functions can be required from `hint` with
-			`%{func_name}` syntaxis.
+`boolean`
 
-								   *hydra-heads*
-heads			table[]
-	Each hydra's head has the form:
->
-	    { {lhs}, {rhs}, {opts} }
+Like the previous option, stops hydra state but BEFORE executing a command
+corresponds to head.
+
+
+ON_KEY
+
+`boolean`
+
+If `false` `config.on_key` function won’t be executed after this head.
+
+
+DESC
+
+`string | false`
+
+The description that will be shown in the auto-generated part of the hint. If
+`false` won’t be show in the hint window
+
+
+EXPR, SILENT
+
+`boolean`
+
+Built-in map arguments. See:
+
+- `:help :map-<expr>`
+- `:help :map-<silent>`
+
+
+NOWAIT
+
+`boolean`
+
+Only relevant for `pink` hydra. For all others will be skipped. The `pink`
+hydra is a layer
+<https://github.com/nvimtools/hydra.nvim/tree/main/lua/hydra/layer> inside, and
+Layer binds its keymaps buffer local, which makes flag `nowait` available. See
+`:help :map-<nowait>`.
+
+This allows, for example bind exit key:
+
+>lua
+    config = {
+        color = 'pink',
+    }
+    ...
+    heads = {
+        { 'q', nil, { nowait = true } }
+        ...
+    }
 <
-	which is pretty-much compares to the signature of the |vim.keymap.set()|
-	function.
-								*hydra-head.lhs*
-	{lhs}			string
-		The {lhs} (left-hand-side) of the mapping, i.e the keys you
-		press to call an action.
-								*hydra-head.rhs*
-	{rhs}			string | function | `nil`
-		Right-hand-side of the mapping.  Can be `nil` which means just do
-		nothing, but if you also want to pass {opts} table, you need to
-		pass `nil` explicitly.
-							       *hydra-head.opts*
-	{opts}			table
-		A table with head options to tune its behavior.
 
-							    *hydra-head.private*
-		private			boolean
-					parent table: {opts}
-			When the hydra hides (not active), the private head
-			does not bounce outside.  I.e., the private head is
-			unreachable outside of the hydra state.
+which will exit layer, without waiting `&timeoutlen` milliseconds for possible
+continuation.
 
-							       *hydra-head.exit*
-		exit			boolean
-					parent table: {opts}
-			Stop the hydra state after executing a command
-			corresponds to such head.
 
-			Note: All exit heads are also private.
+MODE
 
-			Note: If no `exit` head is specified, the `<Esc>` key will
-			be set by default.
+`string | string[]`
 
-			Note: Remind that `rhs` can be `nil`, so the pure escape
-			head looks like this: >
-			    { '<Esc>', nil, { exit = true } }
-<
-							*hydra-head.exit_before*
-		exit_before		boolean
-					parent table: {opts}
-			Like the previous option, stops hydra state, but BEFORE
-			executing a command corresponds to head.
+Overwrite `mode` field for this particular head. Only relevant for `pink`
+hydra, for all others will be ignored.
 
-							     *hydra-head.on_key*
-		on_key			boolean
-					parent table: {opts}
-			If `false` |hydra-config.on_key| function won't be executed
-			after this head.
-							       *hydra-head.desc*
-		desc			string | `false`
-					parent table: {opts}
-			The description that will be shown in the auto-generated
-			part of the hint.  If `false` won't be show in the hint
-			window.
 
-					     *hydra-head.expr* *hydra-head.silent*
-		expr
-		silent			boolean
-					parent table: {opts}
-			Built-in map arguments. See:
-			- |:map-<expr>|
-			- |:map-<silent>|
-							     *hydra-head.nowait*
-		nowait			boolean
-					parent table: {opts}
-			Only relevant for `pink` hydra. For all others will be
-			skipped. The `pink` hydra is a layer
-			https://github.com/nvimtools/hydra.nvim/tree/main/lua/hydra/layer
-			inside, and Layer binds its keymaps buffer local, which
-			makes flag `nowait` available. See |:map-<nowait>|
+HINT ~
 
-			This allows, for example bind exit key:
->
-			    config = {
-				color = 'pink',
-			    }
-			    ...
-			    heads = {
-				{ 'q', nil, { nowait = true } }
-				...
-			    }
-<
-			which will exit layer, without waiting |'timeoutlen'|
-			milliseconds for possible continuation.
+`multiline string`
 
-							       *hydra-head.mode*
-		mode			string | string[]
-					parent table: {opts}
-			Overwrite `mode` field for this particular head.  Only
-			relevant for `pink` hydra, for all others will be ignored.
+You can create any hint you wish.
 
-								    *hydra-hint*
-hint			multiline string
-	You can create any hint you wish.
+  -----------------------------------------------------------------------
+                horizontal                           vertical
+  -------------------------------------- --------------------------------
+                    []                                  []
 
-	To highlight a key, just wrap it in underscores. Note that the key must
-	belong to one of the heads.  The key will be highlighted with the color
-	that is appropriate to the behavior of the key, i.e.  if the key will
-	make the hydra exit, the color will be blue.
+  -----------------------------------------------------------------------
+To highlight a key, just wrap it in underscores. Note that the key must belong
+to one of the heads. The key will be highlighted with the color that is
+appropriate to the behavior of the key, i.e. if the key will make the hydra
+exit, the color will be blue.
 
-	To insert an empty character, use `^` char. It won't be rendered.
-	The only use of it is to have your code aligned as nicely as the result.
+To insert an empty character, use `^`. It won’t be rendered. The only use of
+it is to have your code aligned as nicely as the result.
 
-	You can also create a Lua functions which returns a string and place it
-	in `config.hint.funcs` (see |hydra-config.hint|) table under some key which
-	will be used as a function name. Than you can require this function from
-	the |hint| wrap its name (key in the table) with `%{...}`.  The result of
-	the function will be inserted in that place in the hint when it will be
-	shown. And later this function will be called every time when hydra head
-	will be pressed and the hint will be updated with the function result
-	string. Some functions are already built-in, you can find them in next
-	file: https://github.com/nvimtools/hydra.nvim/blob/main/lua/hydra/hint/vim-options.lua
-	You may submit or request some others which you think may be useful.
-	The using of this feature is shown here:
-	https://github.com/nvimtools/hydra.nvim/wiki/Vim-Options
+You can also create a Lua functions which returns a string and place it in
+`config.hint.funcs` table under some key which will be used as a function name.
+Than you can require this function from the `hint` wrap its name (key in the
+table) with `%{...}`. The result of the function will be inserted in that place
+in the hint when it will be shown. And later this function will be called every
+time when hydra head will be pressed and the hint will be updated with the
+function result string. Some functions are already built-in, you can find them
+in this file
+<https://github.com/nvimtools/hydra.nvim/blob/main/lua/hydra/hint/vim-options.lua>.
+You may submit or request some others which you think may be useful. The using
+of this feature is shown in options hydra
+<https://github.com/nvimtools/hydra.nvim/wiki/Vim-Options>.
 
-	If you pass no `hint`, then one line hint will be generated automatically.
-	The keys and their descriptions will be placed in the order heads were
-	passed in the {heads} table.  Heads with `desc = false` in {opts} table
-	will be skipped.
+If you pass no `hint`, then one line hint will be generated automatically. The
+keys and their descriptions will be placed in the order heads were passed in
+the `heads` table. Heads with `desc = false` in `opts` table will be skipped.
 
-	Every head that won't be found in the manually created hint, will be
-	automatically added at the bottom of the hint window according to rules
-	of auto generated hint.
+Every head that won’t be found in the manually created hint, will be
+automatically added at the bottom of the hint window according to rules of auto
+generated hint.
 
---------------------------------------------------------------------------------
-PUBLIC METHODS							 *hydra-methods*
 
-Hydra:activate()	A public method, which serves to activate hydra
-			programmatically.
+PUBLIC METHODS                               *hydra-hydra.nvim-public-methods*
 
-Hydra:exit()		Exit hydra if it is active.
+- `Hydra:activate()` — a public method, which serves to activate hydra programmatically;
+- `Hydra:exit()` — exit hydra if it is active.
 
---------------------------------------------------------------------------------
-HIGHLIGHT						       *hydra-highlight*
+
+HIGHLIGHT                                         *hydra-hydra.nvim-highlight*
 
 Hydra defines next highlight groups with their defaults:
 
-HydraRed	#ff5733
-HydraBlue	#5ebcf6
-HydraAmaranth	#ff1757
-HydraTeal	#00a1a1
-HydraPink	#ff55de
+>
+    HydraRed        #FF5733
+    HydraBlue       #5EBCF6
+    HydraAmaranth   #ff1757
+    HydraTeal       #00a1a1
+    HydraPink       #ff55de
+<
 
-HydraHint	linked to |hl-NormalFloat|
-		The fore- and background of the hint window.
+- `HydraHint` — linked to `NormalFloat`, defines the fore- and background of the hint window;
+- `HydraBorder` — linked to `FloatBorder`, defines the fore- and background of the border.
+- `HydraTitle` — linked to `FloatTitle`, hl for the window title
+- `HydraFooter` — linked to `FloatFooter`, hl for the window footer (only in nvim 0.10.0+)
 
-HydraBorder	linked to `FloatBorder`
-		The fore- and background of the hint window border.
 
---------------------------------------------------------------------------------
-KEYMAP UTILITY FUNCTIONS				     *hydra-keymap_util*
+KEYMAP UTILITY FUNCTIONS           *hydra-hydra.nvim-keymap-utility-functions*
 
 Utility functions to use in keymaps. Can be required from the next table:
->
+
+>lua
     require('hydra.keymap-util')
 <
 
-cmd({command})		fun(string): string
-		Get a string and wrap it in `<Cmd>`, `<CR>`.  Example: >
-		    cmd(vsplit)  ->  "<Cmd>vsplit<CR>"
+- `cmd(command)`
+    Get a string and wrap it in `<Cmd>`, `<CR>`. I.e.:
+    >
+        cmd(vsplit)  ->  "<Cmd>vsplit<CR>"
+    <
+    **param:** `command` : `string` **return:** `string`
+- `pcmd(try_cmd, catch?, catch_cmd?)`
+    Protected `cmd`. Examples explain better:
+    >
+        pcmd("wincmd k", "E11", "close")
+        ->  "<Cmd>try | wincmd k | catch /^Vim\%((\a\+)\)\=:E11:/ | close | endtry<CR>"
+        
+        pcmd("wincmd k", nil, "close")
+        ->  "<Cmd>try | wincmd k | catch | close | endtry<CR>"
+        
+        pcmd("close")
+        ->  "<Cmd>try | close | catch | endtry<CR>"
+    <
+    See: `:help exception-handling`
+    **params:**
+    - `try_cmd` : `string`
+    - `catch` : `string` (optional) — String of the form `E` + some digits, like `E12` or `E444`.
+    - `catch_cmd` : `string` (optional)
+    **return:** `string`
 
-pcmd({try_cmd}, {catch}?, {catch_cmd}?)
-			fun(string, string?, string?): string
-		Protected `cmd`. Examples explain better:
->
-    pcmd("wincmd k", "E11", "close")
-    ->  "<Cmd>try | wincmd k | catch /^Vim\%((\a\+)\)\=:E11:/ | close | endtry<CR>"
 
-    pcmd("wincmd k", nil, "close")
-    ->  "<Cmd>try | wincmd k | catch | close | endtry<CR>"
-
-    pcmd("close")
-    ->  "<Cmd>try | close | catch | endtry<CR>"
-<
-		See: |exception-handling|
-
-		Parameters:~
-		    {try_cmd}	    string
-
-		    {catch}	    string (optional)
-			    String of the form `E` + some digits, like `E12` or `E444`.
-
-		    {catch_cmd}	    string (optional)
-
-		Return:~
-		    string
-
---------------------------------------------------------------------------------
-STATUSLINE						      *hydra-statusline*
+STATUSLINE                                       *hydra-hydra.nvim-statusline*
 
 In the statusline module `require('hydra.statusline')` there are functions that
 can help you to integrate Hydra in your statusline:
 
-is_active()	Returns `true` if there is an active hydra;
+- `is_active()` — returns `true` if there is an active hydra;
+- `get_name()` — get the name of an active hydra if it has it;
+- `get_color()` — get the color of an active hydra;
+- `get_hint()` — get an active hydra’s statusline hint. Return not `nil` only when
+    `config.hint` is set to `false.`
 
-get_name()	Get the name of an active hydra if it has it;
 
-get_color()	Get the color of an active hydra;
+DRAWBACKS                                         *hydra-hydra.nvim-drawbacks*
 
-get_hint()	Get an active hydra's statusline hint. Return not `nil` only when
-		|hydra-config.hint| is set to `false.`
+`[count]` is not supported in a red, amaranth and teal hydras (see `:help
+count`). But supported in pink hydra since it is a layer
+<https://github.com/nvimtools/hydra.nvim/tree/main/lua/hydra/layer>.
 
---------------------------------------------------------------------------------
-DRAWBACKS						       *hydra-drawbacks*
 
-`[count]` is not supported in a red, amaranth and teal hydras (see `:help count`).
-But supported in pink hydra since it is a layer:
-https://github.com/nvimtools/hydra.nvim/tree/main/lua/hydra/layer
+HOW IT WORKS UNDER THE HOOD     *hydra-hydra.nvim-how-it-works-under-the-hood*
 
---------------------------------------------------------------------------------
- vim:ft=help:tw=80:isk=!-~,^*,^\|,^\":ts=8:noet:norl:
+You can read about the internal mechanics in the CONTRIBUTING
+<https://github.com/nvimtools/hydra.nvim/blob/main/CONTRIBUTING.md>
+
+
+THANKS                                               *hydra-hydra.nvim-thanks*
+
+- anuvyklack <https://github.com/anuvyklack/> for creating the original hydra.nvim that
+    this is forked from
+- hydra <https://github.com/abo-abo/hydra> for existing
+
+==============================================================================
+2. Links                                                         *hydra-links*
+
+1. **: https://user-images.githubusercontent.com/13056013/174493857-eb30b9a9-9078-40f8-a076-bc290acc26bf.png
+2. **: https://user-images.githubusercontent.com/13056013/175947218-d1b70266-9964-48c9-aaae-75195501ef7e.png
+3. **: https://user-images.githubusercontent.com/13056013/179405895-b5206124-b091-42a4-ba5d-95bbc3e1b61b.png
+4. **: https://user-images.githubusercontent.com/13056013/179405898-190c609c-3474-4809-a59b-a11e6da4e4ed.png
+
+Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
+
+vim:tw=78:ts=8:noet:ft=help:norl:
