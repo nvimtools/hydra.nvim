@@ -96,7 +96,6 @@ function HintAutoWindow:_make_win_config()
       width = vim.o.columns,
       height = 1,
       style = "minimal",
-      border = self.config.border,
       focusable = false,
       noautocmd = true,
    }, self.config.float_opts or {})
@@ -295,7 +294,6 @@ function HintManualWindow:_make_win_config()
       width  = self.win_width,
       height = self.win_height,
       style = 'minimal',
-      border = self.config.border,
       focusable = false,
       noautocmd = true,
    }, self.config.float_opts or {})

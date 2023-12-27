@@ -188,7 +188,8 @@ function util.warn_deprecated(option, config)
       if deprecation_notice.hint then
          message = string.format("%s -- See %s", message, deprecation_notice.hint)
       end
-      vim.notify(message, vim.log.levels.WARN, {
+      -- \n turns this into a "press-enter" message (:h press-enter), it's also the only way I can see the message
+      vim.notify(message .. "\n", vim.log.levels.WARN, {
          title = "Hydra.nvim"
       })
       deprecated_opts[option].warned = true
@@ -200,6 +201,9 @@ function util.process_deprecations(config)
    for deprecated_option, _ in pairs(deprecated_opts) do
       local current_config_path = config
       for node in deprecated_option:gmatch('([^.]+)') do
+         if type(current_config_path) ~= 'table' then
+             return
+         end
          current_config_path = current_config_path[node]
       end
       if current_config_path then

@@ -18,6 +18,9 @@ local util = require("hydra.lib.util")
 --      there is one
 
 util.deprecate("hint.border", "2024-02-01", function(config)
+    if not type(config.hint) == "table" then
+      return
+    end
     if not config.hint.float_opts then
         config.hint.float_opts = {}
     end
