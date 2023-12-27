@@ -1,5 +1,7 @@
 local util = {}
 
+local deprecated_opts = {}
+
 ---@param msg string
 function util.warn(msg)
    vim.schedule(function()
@@ -163,19 +165,57 @@ end
 ---@param default hydra.Config
 ---@param input hydra.Config
 ---@return hydra.Config
-function util.megre_config(default, input)
+function util.merge_config(default, input)
    if not default then
       return vim.deepcopy(input)
    end
    local r = vim.deepcopy(default)
    for key, value in pairs(input) do
       if type(value) == 'table' then
-         r[key] = util.megre_config(r[key], value)
+         r[key] = util.merge_config(r[key], value)
       else
          r[key] = input[key]
       end
    end
    return r
+end
+
+function util.warn_deprecated(option, config)
+   local deprecation_notice = deprecated_opts[option]
+   if deprecation_notice and not deprecation_notice.warned then
+      local message = string.format('Option "%s" has been deprecated and will be removed on %s', option, deprecation_notice.date)
+      if deprecation_notice.hint then
+         message = string.format("%s -- See %s", message, deprecation_notice.hint)
+      end
+      vim.notify(message, vim.log.levels.WARN, {
+         title = "Hydra.nvim"
+      })
+      deprecated_opts[option].warned = true
+      deprecated_opts[option].migrator(config)
+   end
+end
+
+function util.process_deprecations(config)
+   for deprecated_option, _ in pairs(deprecated_opts) do
+      local current_config_path = config
+      for node in deprecated_option:gmatch('([^.]+)') do
+         current_config_path = current_config_path[node]
+      end
+      if current_config_path then
+         util.warn_deprecated(deprecated_option, config)
+      end
+   end
+end
+
+function util.deprecate(option, date, migrator, hint)
+   assert(migrator, "A migration callback to automagically get from " .. option .. " to its replacement is required!")
+   if deprecated_opts[option] then return end
+   deprecated_opts[option] = {
+      date = date,
+      hint = hint,
+      migrator = migrator,
+      warned = false
+   }
 end
 
 return util
