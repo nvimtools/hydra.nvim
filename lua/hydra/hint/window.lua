@@ -295,6 +295,7 @@ function HintManualWindow:_make_win_config()
       width  = self.win_width,
       height = self.win_height,
       style = 'minimal',
+      border = self.config.border,
       focusable = false,
       noautocmd = true,
    }, self.config.float_opts or {})
