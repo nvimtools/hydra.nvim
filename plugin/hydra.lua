@@ -8,8 +8,13 @@ hl('HydraAmaranth', { fg = '#ff1757', bold = true, default = true })
 hl('HydraTeal',     { fg = '#00a1a1', bold = true, default = true })
 hl('HydraPink',     { fg = '#ff55de', bold = true, default = true })
 
-hl('HydraHint', { link = 'NormalFloat', default = true })
-hl('HydraBorder', { link = 'FloatBorder', default = true })
+hl('HydraHint',     { link = 'NormalFloat', default = true })
+hl('HydraBorder',   { link = 'FloatBorder', default = true })
+hl('HydraTitle',    { link = 'FloatTitle',  default = true })
+
+if vim.version().minor >= 10 then
+   hl('HydraFooter', { link = 'FloatFooter', default = true })
+end
 
 
 -- local ns_id = vim.api.nvim_create_namespace('hydra.plugin')

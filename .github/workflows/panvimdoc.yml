@@ -1,0 +1,21 @@
+name: panvimdoc
+
+on: [push]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    name: pandoc to vimdoc
+    steps:
+      - uses: actions/checkout@v2
+      - uses: kdheepak/panvimdoc@main
+        with:
+          vimdoc: hydra
+          # The following are all optional
+          pandoc: "README.md" # Input pandoc file
+          version: "NVIM v0.9.4" # Vim version number
+          toc: true # Table of contents
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Auto generate docs"
+          branch: ${{ github.head_ref }}
