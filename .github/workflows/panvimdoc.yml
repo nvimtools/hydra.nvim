@@ -11,13 +11,14 @@ jobs:
     name: pandoc to vimdoc
     steps:
       - uses: actions/checkout@v2
-      - uses: kdheepak/panvimdoc@main
+      - uses: kdheepak/panvimdoc@v4.0.0
         with:
           vimdoc: hydra
           # The following are all optional
           pandoc: "README.md" # Input pandoc file
           version: "NVIM v0.9.4" # Vim version number
           toc: true # Table of contents
+          shiftheadinglevelby: -1
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Auto generate docs"
