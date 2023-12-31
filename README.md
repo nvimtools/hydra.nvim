@@ -38,30 +38,28 @@ easy glance at what you can do.
 If you want to quickly understand the concept, you can watch
 [the original Emacs Hydra video demo](https://www.youtube.com/watch?v=_qZliI1BKzI)
 
-<!-- (maybe I will create our own later :smile:). -->
-
-<!-- vim-markdown-toc GFM -->
+<!-- panvimdoc-ignore-start -->
 
 - [Installation](#installation)
 - [Creating a New Hydra](#creating-a-new-hydra)
 - [Config](#config)
 - [Hint](#hint)
-    - [Hint Configuration](#hint-configuration)
+  - [Hint Configuration](#hint-configuration)
 - [Heads](#heads)
 - [Colors](#colors)
-    - [Amaranth](#amaranth)
-    - [Blue and Teal](#blue-and-teal)
-    - [Pink](#pink)
+  - [Amaranth](#amaranth)
+  - [Blue and Teal](#blue-and-teal)
+  - [Pink](#pink)
 - [Hooks](#hooks)
-    - [Meta Accessors](#meta-accessors)
+  - [Meta Accessors](#meta-accessors)
 - [Public methods](#public-methods)
 - [Highlights](#highlights)
 - [Keymap Utility Functions](#keymap-utility-functions)
 - [Statusline](#statusline)
-- [Drawbacks](#drawbacks)
+- [Limitations](#limitations)
 - [How it works under the hood](#how-it-works-under-the-hood)
 
-<!-- vim-markdown-toc -->
+<!-- panvimdoc-ignore-end -->
 
 ## Installation
 
@@ -86,8 +84,10 @@ local Hydra = require("hydra")
 Hydra({
     -- string? only used in auto-generated hint
     name = "Hydra's name",
+
     -- string | string[] modes where the hydra exists, same as `vim.keymap.set()` accepts
     mode = "n",
+
     -- string? key required to activate the hydra, when excluded, you can use
     -- Hydra:activate()
     body = "<leader>o",
@@ -120,7 +120,7 @@ config = {
     --   "run": hydra stays active, runs the foreign key
     foreign_keys = nil,
 
-    -- see `:h hydra-config-colors`
+    -- see `:h hydra-colors`
     color = "red", -- "red" | "amaranth" | "teal" | "pink"
 
     -- define a hydra for the given buffer, pass `true` for current buf
@@ -144,7 +144,7 @@ config = {
     --   5000: set to desired number of milliseconds
     timeout = false, -- by default hydras wait forever
 
-    -- see :h hydra-config-hint
+    -- see :h hydra-hint-hint-configuration
     hint = false,
 }
 ```
@@ -158,26 +158,30 @@ The string for the hint is passed directly to the hydra:
 
 ```lua
 Hydra({
-    -- by default, a one line hint is generated and used in the cmdline. Heads
-    -- and their descriptions are placed in the order they were passed into the
-    -- heads table. Heads with {opts = {desc = false}} don't appear in
-    -- auto-generated hints
     hint = [[ some multiline string ]]
 })
 ```
 
-Values in this string are parsed with the following rules:
+By default, a one line hint is generated and displayed in the cmdline. Heads and their
+descriptions are placed in the order they were passed into the `heads` table. Heads with
+`{opts = {desc = false}}` don't appear in auto-generated hints.
+
+Values in the hint string are parsed with the following rules:
 
 - anything between `_` is considered a head, and will be highlighted with the
   corresponding head [color](#colors).
-- `^` is treated as an empty char and can be used to help align the hint
-- `%{val}` is a dynamic value, a function named `val` is called and it's return value
-  inserted - Updated each time a head is called - Pass these functions to
-  `config.hint.funcs` (discussed below) - There are built-in functions located here: [this
-  file](https://github.com/nvimtools/hydra.nvim/blob/main/lua/hydra/hint/vim-options.lua)
+- `^` is treated as an empty char and can be used to help align the hint (normally used
+  on lines that don't have as many underscores as lines above or below)
+- `%{val}` is a dynamic value, a function named `val` is called and its return value
+  inserted into the hint
+  - Updated each time a head is called
+  - Pass these functions to `config.hint.funcs` (discussed below)
+  - There are built-in functions located here: [this
+    file](https://github.com/nvimtools/hydra.nvim/blob/main/lua/hydra/hint/vim-options.lua)
 
 **Heads not in the manually created hint, will be automatically added to the bottom of the
-hint window, following the same rules as auto-generated hint**
+hint window, following the same rules as auto-generated hint. You can avoid this with
+`{desc = false}`**
 
 ### Hint Configuration
 
@@ -190,9 +194,9 @@ Hydra({
         -- either a table like below, or `false` to disable the hint
         hint = {
             -- "window" | "cmdline" | "statusline"
-            --  "window": show hint in a floating window
-            --  "cmdline": show hint in the echo area
-            --  "statusline": show auto-generated hint in the status line
+            --   "window"    : show hint in a floating window
+            --   "cmdline"   : show hint in the echo area
+            --   "statusline": show auto-generated hint in the status line
             type = "window", -- defaults to "window" if `hint` is passed to the hydra
                              -- otherwise defaults to "cmdline"
 
@@ -223,6 +227,7 @@ Hydra({
 
             -- Table from function names to function. Functions should return
             -- a string. These functions can be used in hints with %{func_name}
+            -- more in :h hydra-hint
             funcs = {},
         }
     }
@@ -262,7 +267,7 @@ opts = {
     -- Like exit, but stops the hydra BEFORE executing the command
     exit_before = false,
 
-    -- when set to false, config.on_key function isn't run after this head
+    -- when set to false, config.on_key isn't run after this head
     ok_key = true,
 
     -- string | false - value shown in auto-generated hint. When false, this key
@@ -273,7 +278,7 @@ opts = {
     expr = false, -- :h :map-expression
     silent = false, -- :h :map-silent
 
-    -- \/ For Pink Hydra's only \/ --
+    -- \/ For Pink Hydras only \/ --
 
     -- allows binding a key which will immediately perform its action and not wait
     -- `timeoutlen` for a possible continuation
@@ -297,15 +302,15 @@ sets them in the following way:
 | teal     | foreign_keys = 'warn', exit = true |
 | pink     | foreign_keys = 'run'               |
 
-> [!NOTE] The `exit` and `foreign_keys` options are higher priority than the `color`
-> option and can't be overridden by it. I.e, if manually set values of `exit` and
-> `foreign_keys` contradict the `color` value, then the `color` value is ignored
+> [!NOTE]
+> The `exit` and `foreign_keys` options are higher priority than the `color` option and
+> can't be overridden by it. I.e, if manually set values of `exit` and `foreign_keys`
+> contradict the `color` value, then the `color` value is ignored
 
-Colors are also used to highlight heads in the hint, so you know how they will
-behave.
+Colors are also used to highlight heads in the hint, so you know how they will behave.
 
-Each hydra head has a _basic_ associated color, red or blue, that determines whether
-or not the hydra will continue after the head is called:
+Each hydra head has a _basic_ associated color, red or blue, that determines whether or
+not the hydra will continue after the head is called:
 
 - reddish head will execute the command and continue the state
 - blueish head will execute the command and stop the state
@@ -325,8 +330,8 @@ effects of the different colors.
 
 ### Amaranth
 
-The amaranth color wasn't chosen by accident because it is the variation of the red color,
-but it has the sense underneath. According to
+The amaranth color wasn't chosen at random just because it is a variation of the color
+red. There is some lore &mdash; according to
 [Wikipedia](http://en.wikipedia.org/wiki/Amaranth):
 
 > The word amaranth comes from the Greek word amaranton, meaning "unwilting" (from the
@@ -352,11 +357,12 @@ so all keys except overwritten are work as usual. Even `[count]` prefixes.
 ## Hooks
 
 There are three hooks currently, `on_enter`, `on_exit`, and `on_key`. These fire when
-you'd expect, and they're set on a per hydra basis.
+you'd expect, and they're set on a per hydra basis. The `on_enter` function is called in
+such a way that gives you access to [meta-accessors](#meta-accessors).
 
 ### Meta Accessors
 
-Inside the `on_enter` functions the `vim.o`, `vim.go`, `vim.bo` and `vim.wo`
+Inside a function passed as `on_enter`, the `vim.o`, `vim.go`, `vim.bo` and `vim.wo`
 [meta-accessors](https://github.com/nanotee/nvim-lua-guide#using-meta-accessors) are
 redefined to work the way you think they should. If you want some option value to be
 temporary changed while Hydra is active, you need just set it with one of the
