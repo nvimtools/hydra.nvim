@@ -149,6 +149,37 @@ config = {
 }
 ```
 
+### Default Configuration
+
+The above discusses per-hydra configuration. But Hydra.nvim also allows you to set
+defaults for the `config` table. These defaults are automatically applied to new hydras,
+but can still be overridden on a per-hydra basis.
+
+This is useful for setting config that you want to apply to all of your hydras, like
+common floating window borders, or common hooks.
+
+_Only applies to hydras that are created after you call the setup method_
+
+```lua
+require('hydra.defaults').setup({
+    debug = false,
+    exit = false,
+    foreign_keys = nil,
+    color = "red",
+    timeout = false,
+    invoke_on_body = false,
+    hint = {
+        show_name = true,
+        position = { "bottom" },
+        offset = 0,
+        float_opts = { },
+    },
+    on_enter = nil,
+    on_exit = nil,
+    on_key = nil,
+})
+```
+
 ## Hint
 
 The hint for a hydra can let you know that it's active, and remind you of the hydra's

@@ -16,14 +16,37 @@
 ---@field timeout boolean | number  Number of milliseconds
 ---@field hint hydra.hint.Config | false
 
+---@class hydra.OptionalConfig
+---@field debug? boolean
+---@field desc? string
+---@field buffer? integer
+---@field exit? boolean
+---@field foreign_keys? hydra.foreign_keys
+---@field color? hydra.color
+---@field on_enter? function  Before entering hydra
+---@field on_exit? function   After leaving hydra
+---@field on_key? function    After every hydra head
+---@field invoke_on_body? boolean
+---@field timeout? boolean | number  Number of milliseconds
+---@field hint? hydra.hint.OptionalConfig | false
+
 ---@class hydra.hint.Config
----@field type 'statusline' | 'cmdline' | 'window'
+---@field type 'statusline' | 'cmdline' | 'window' | nil
 ---@field position hydra.hint.Config.position
 ---@field offset integer
 ---@field border? string | table -- deprecated, use `float_opts.border`
 ---@field float_opts? table
 ---@field funcs? table<string, fun():string>
 ---@field show_name boolean
+
+---@class hydra.hint.OptionalConfig
+---@field type 'statusline' | 'cmdline' | 'window' | nil
+---@field position? hydra.hint.Config.position
+---@field offset? integer
+---@field border? string | table -- deprecated, use `float_opts.border`
+---@field float_opts? table
+---@field funcs? table<string, fun():string>
+---@field show_name? boolean
 
 ---@class hydra.hint.Config.position
 ---@field [1] 'top' | 'middle' | 'bottom'
