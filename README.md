@@ -43,6 +43,7 @@ If you want to quickly understand the concept, you can watch
 - [Installation](#installation)
 - [Creating a New Hydra](#creating-a-new-hydra)
 - [Config](#config)
+  - [Default Configuration](#default-configuration)
 - [Hint](#hint)
   - [Hint Configuration](#hint-configuration)
 - [Heads](#heads)
@@ -151,9 +152,9 @@ config = {
 
 ### Default Configuration
 
-The above discusses per-hydra configuration. But Hydra.nvim also allows you to set
-defaults for the `config` table. These defaults are automatically applied to new hydras,
-but can still be overridden on a per-hydra basis.
+The above discusses per-hydra configuration. But Hydra.nvim also allows you to set default
+values for the `config` table. These defaults are automatically applied to new hydras, but
+can still be overridden on a per-hydra basis.
 
 This is useful for setting config that you want to apply to all of your hydras, like
 common floating window borders, or common hooks.
@@ -161,7 +162,7 @@ common floating window borders, or common hooks.
 _Only applies to hydras that are created after you call the setup method_
 
 ```lua
-require('hydra.defaults').setup({
+require('hydra').setup({
     debug = false,
     exit = false,
     foreign_keys = nil,
