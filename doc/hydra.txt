@@ -1,4 +1,4 @@
-*hydra.txt*            For NVIM v0.9.4            Last change: 2024 January 01
+*hydra.txt*            For NVIM v0.9.4            Last change: 2024 January 06
 
 ==============================================================================
 Table of Contents                                    *hydra-table-of-contents*
@@ -160,8 +160,8 @@ With this table, you can set the behavior of the whole hydra.
 DEFAULT CONFIGURATION                     *hydra-config-default-configuration*
 
 The above discusses per-hydra configuration. But Hydra.nvim also allows you to
-set defaults for the `config` table. These defaults are automatically applied
-to new hydras, but can still be overridden on a per-hydra basis.
+set default values for the `config` table. These defaults are automatically
+applied to new hydras, but can still be overridden on a per-hydra basis.
 
 This is useful for setting config that you want to apply to all of your hydras,
 like common floating window borders, or common hooks.
@@ -169,7 +169,7 @@ like common floating window borders, or common hooks.
 _Only applies to hydras that are created after you call the setup method_
 
 >lua
-    require('hydra.defaults').setup({
+    require('hydra').setup({
         debug = false,
         exit = false,
         foreign_keys = nil,
