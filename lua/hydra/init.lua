@@ -25,18 +25,17 @@ local Hydra = class()
 
 ---@type hydra.Config
 local default_config = {
-   debug = false,
-   exit = false,
-   foreign_keys = nil,
-   color = 'red',
-   timeout = false,
-   invoke_on_body = false,
-   hint = {
-      show_name = true,
-      position = { 'bottom' },
-      offset = 0,
-      border = nil,
-   }
+  debug = false,
+  exit = false,
+  foreign_keys = nil,
+  color = "red",
+  timeout = false,
+  invoke_on_body = false,
+  hint = {
+    show_name = true,
+    position = { "bottom" },
+    offset = 0,
+  },
 }
 
 ---@param input table
@@ -107,6 +106,7 @@ function Hydra:initialize(input)
    self.heads = {}
    self.options = options('hydra.options')
    self.plug_wait = string.format('<Plug>(Hydra%d_wait)', self.id)
+
    self.config = util.merge_config(default_config, input.config or {})
    util.process_deprecations(self.config)
    do
@@ -521,6 +521,12 @@ function Hydra:debug(...)
    if self.config.debug then
       vim.pretty_print(...)
    end
+end
+
+--- Change the default configuration
+--- @param opts hydra.OptionalConfig
+function Hydra.setup(opts)
+  default_config = vim.tbl_deep_extend("force", default_config, opts)
 end
 
 return Hydra

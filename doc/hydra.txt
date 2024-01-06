@@ -1,4 +1,4 @@
-*hydra.txt*            For NVIM v0.9.4           Last change: 2023 December 31
+*hydra.txt*            For NVIM v0.9.4            Last change: 2024 January 06
 
 ==============================================================================
 Table of Contents                                    *hydra-table-of-contents*
@@ -8,6 +8,7 @@ Table of Contents                                    *hydra-table-of-contents*
 3. Installation                                           |hydra-installation|
 4. Creating a New Hydra                           |hydra-creating-a-new-hydra|
 5. Config                                                       |hydra-config|
+  - Default Configuration                 |hydra-config-default-configuration|
 6. Hint                                                           |hydra-hint|
   - Hint Configuration                         |hydra-hint-hint-configuration|
 7. Heads                                                         |hydra-heads|
@@ -153,6 +154,38 @@ With this table, you can set the behavior of the whole hydra.
         -- see :h hydra-hint-hint-configuration
         hint = false,
     }
+<
+
+
+DEFAULT CONFIGURATION                     *hydra-config-default-configuration*
+
+The above discusses per-hydra configuration. But Hydra.nvim also allows you to
+set default values for the `config` table. These defaults are automatically
+applied to new hydras, but can still be overridden on a per-hydra basis.
+
+This is useful for setting config that you want to apply to all of your hydras,
+like common floating window borders, or common hooks.
+
+_Only applies to hydras that are created after you call the setup method_
+
+>lua
+    require('hydra').setup({
+        debug = false,
+        exit = false,
+        foreign_keys = nil,
+        color = "red",
+        timeout = false,
+        invoke_on_body = false,
+        hint = {
+            show_name = true,
+            position = { "bottom" },
+            offset = 0,
+            float_opts = { },
+        },
+        on_enter = nil,
+        on_exit = nil,
+        on_key = nil,
+    })
 <
 
 
