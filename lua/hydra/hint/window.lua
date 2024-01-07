@@ -168,6 +168,7 @@ function HintManualWindow:initialize(input)
 end
 
 function HintManualWindow:_make_buffer()
+   local parser = require("hydra.hint.parser")
    local bufnr = api.nvim_create_buf(false, true)
 
    ---@type hydra.api.Buffer
@@ -182,27 +183,11 @@ function HintManualWindow:_make_buffer()
 
    self.win_width = 0 -- The width of the window
    for n, line in ipairs(hint) do
-      local start, stop, fname = 0, nil, nil
-      while start do
-         start, stop, fname = line:find('%%{(.-)}', 1)
-         if start then
-            self.need_to_update = true
+      local parsed_line, need_to_update = parser.eval_funcs(line, self.config.funcs)
+      self.need_to_update = self.need_to_update or need_to_update
+      hint[n] = parsed_line
 
-            local fun = self.config.funcs[fname]
-            if not fun then
-               error(string.format('[Hydra] "%s" not present in "config.hint.functions" table', fname))
-            end
-
-            line = table.concat({
-               line:sub(1, start - 1),
-               fun(),
-               line:sub(stop + 1)
-            })
-            hint[n] = line
-         end
-      end
-
-      local visible_line_len = strdisplaywidth(line:gsub('[_^]', ''))
+      local visible_line_len = strdisplaywidth(parsed_line:gsub('[_^]', ''))
       if visible_line_len > self.win_width then
          self.win_width = visible_line_len
       end
@@ -214,19 +199,10 @@ function HintManualWindow:_make_buffer()
    buffer:set_lines(0, line_count, hint)
 
    for n, line in ipairs(hint) do
-      local start, stop, head = 0, 0, nil
-      while start do
-         start, stop, head = line:find('_(.-)_', stop + 1)
-         if head and vim.startswith(head, [[\]]) then head = head:sub(2) end
-         if start then
-            if not heads[head] then
-               error(string.format('[Hydra] docsting error, head "%s" does not exist', head))
-            end
-            local color = heads[head].color
-            buffer:add_highlight(namespace, 'Hydra'..color, n-1, start, stop-1)
-            heads[head] = nil
-         end
+      local hl = function(color, start, end_)
+        buffer:add_highlight(namespace, 'Hydra' .. color, n - 1, start, end_)
       end
+      parser.parse_heads(line, heads, hl)
    end
 
    -- Remove heads with `desc = false`.
@@ -236,7 +212,7 @@ function HintManualWindow:_make_buffer()
       end
    end
 
-   -- If there are remain hydra heads, that not present in manually created hint.
+   -- If there are remaining hydra heads, we should add them to the end of the hint
    if not vim.tbl_isempty(heads) then
       ---@type string[]
       local heads_lhs = vim.tbl_keys(heads)
@@ -264,14 +240,9 @@ function HintManualWindow:_make_buffer()
       buffer:set_lines(-1, -1, { '', line })
       self.win_height = self.win_height + 2
 
-      local start, stop, head = 0, 0, nil
-      while start do
-         start, stop, head = line:find('_(.-)_', stop+1)
-         if start then
-            local color = self.heads[head].color
-            buffer:add_highlight(namespace, 'Hydra'..color, self.win_height-1, start, stop-1)
-         end
-      end
+      parser.parse_heads(line, heads, function(color, start, end_)
+         buffer:add_highlight(namespace, 'Hydra'..color, self.win_height-1, start, end_)
+      end)
    end
 
    buffer.bo.buftype = 'nofile'
