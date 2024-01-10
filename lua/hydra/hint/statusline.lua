@@ -60,9 +60,16 @@ end
 ---@field need_to_update boolean
 local HintManualStatusLine = class(HintAutoStatusLine)
 
+local vim_options = require('hydra.hint.vim-options')
 function HintManualStatusLine:initialize(input)
    HintAutoStatusLine.initialize(self, input)
    self.need_to_update = false
+
+   if type(self.config) == "table" then
+      self.config.funcs = setmetatable(self.config.funcs or {}, {
+         __index = vim_options
+      })
+   end
 end
 
 function HintManualStatusLine:_make_statusline()
@@ -103,8 +110,24 @@ function HintManualStatusLine:_make_statusline()
       last_end = end_
    end)
 
+   vim.list_extend(statusline, {
+      hint:sub(last_end + 2)
+   })
+
    statusline = table.concat(statusline) ---@diagnostic disable-line
    self.statusline = statusline
+end
+
+function HintManualStatusLine:update()
+   print("hi")
+   if not self.need_to_update then return end
+   print("need to update")
+
+   local saved_statusline = self.original_statusline
+   self.statusline = nil
+   self:_make_statusline()
+   self:show()
+   self.original_statusline = saved_statusline
 end
 
 --------------------------------------------------------------------------------
