@@ -31,7 +31,7 @@
 ---@field hint? hydra.hint.OptionalConfig | false
 
 ---@class hydra.hint.Config
----@field type 'statusline' | 'cmdline' | 'window' | nil
+---@field type 'statusline' | 'cmdline' | 'window' | 'manualstatusline' | nil
 ---@field position hydra.hint.Config.position
 ---@field offset integer
 ---@field border? string | table -- deprecated, use `float_opts.border`
