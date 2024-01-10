@@ -1,4 +1,4 @@
-*hydra.txt*            For NVIM v0.9.4            Last change: 2024 January 06
+*hydra.txt*            For NVIM v0.9.4            Last change: 2024 January 10
 
 ==============================================================================
 Table of Contents                                    *hydra-table-of-contents*
@@ -205,7 +205,7 @@ The string for the hint is passed directly to the hydra:
 
 By default, a one line hint is generated and displayed in the cmdline. Heads
 and their descriptions are placed in the order they were passed into the
-`heads` table. Heads with `{opts = {desc = false}}` don’t appear in
+`heads` table. Heads with `{ opts = { desc = false }}` don’t appear in
 auto-generated hints.
 
 Values in the hint string are parsed with the following rules:
@@ -218,12 +218,12 @@ Values in the hint string are parsed with the following rules:
     inserted into the hint
     - Updated each time a head is called
     - Pass these functions to `config.hint.funcs` (discussed below)
-    - There are built-in functions located here: this
-        file <https://github.com/nvimtools/hydra.nvim/blob/main/lua/hydra/hint/vim-options.lua>
+    - There are built-in functions located
+        here <https://github.com/nvimtools/hydra.nvim/blob/main/lua/hydra/hint/vim-options.lua>
 
 **Heads not in the manually created hint, will be automatically added to the
 bottom of the hint window, following the same rules as auto-generated hint. You
-can avoid this with {desc = false}**
+can avoid this with { desc = false }**
 
 
 HINT CONFIGURATION                             *hydra-hint-hint-configuration*
@@ -236,10 +236,12 @@ disable the hint by setting this value to `false`.
         config = {
             -- either a table like below, or `false` to disable the hint
             hint = {
-                -- "window" | "cmdline" | "statusline"
-                --   "window"    : show hint in a floating window
-                --   "cmdline"   : show hint in the echo area
+                -- "window" | "cmdline" | "statusline" | "statuslinemanual"
+                --   "window": show hint in a floating window
+                --   "cmdline": show hint in the echo area
                 --   "statusline": show auto-generated hint in the status line
+                --   "statuslinemanual": Do not show a hint, but return a custom status
+                --                       line hint from require("hydra.statusline").get_hint()
                 type = "window", -- defaults to "window" if `hint` is passed to the hydra
                                  -- otherwise defaults to "cmdline"
     
@@ -506,7 +508,7 @@ can help you to integrate Hydra in your statusline:
 - `get_name()` — get the name of an active hydra if it has it;
 - `get_color()` — get the color of an active hydra;
 - `get_hint()` — get an active hydra’s statusline hint. Return not `nil` only when
-    `config.hint` is set to `false.`
+    `config.hint` is set to `false` or when `config.hint.type == "statuslinemanual"`
 
 
 ==============================================================================
