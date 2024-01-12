@@ -526,6 +526,7 @@ end
 --- Change the default configuration
 --- @param opts hydra.OptionalConfig
 function Hydra.setup(opts)
+   opts = opts or {}
   default_config = vim.tbl_deep_extend("force", default_config, opts)
 end
 
