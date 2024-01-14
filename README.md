@@ -260,7 +260,7 @@ Hydra({
             show_name = true,
             
             -- if set to true, this will prevent the hydra's hint window from displaying
-            -- immediately. Only applicable on pink hydras.
+            -- immediately.
             -- Note: you can still show the window manually by calling Hydra:show()
             hide_on_load = false,
 

@@ -466,7 +466,9 @@ function Hydra:_enter()
 
    if self.config.on_enter then self.config.on_enter() end
 
-   self.hint:show()
+   if not self.config.hint.hide_on_load then
+      self.hint:show()
+   end
 end
 
 ---Programmatically activate hydra
