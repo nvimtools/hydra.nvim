@@ -140,7 +140,6 @@ function HintAutoWindow:close()
       self.win:close()
    end
    self.win = nil
-   self.need_to_update = false
 
    api.nvim_clear_autocmds({ group = augroup })
 end
@@ -326,6 +325,7 @@ function HintManualWindow:close()
       self.win_config = nil
       self.buffer:delete()
       self.buffer = nil
+      self.need_to_update = false
    end
 end
 
