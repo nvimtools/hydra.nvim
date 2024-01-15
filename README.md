@@ -261,7 +261,8 @@ Hydra({
             
             -- if set to true, this will prevent the hydra's hint window from displaying
             -- immediately.
-            -- Note: you can still show the window manually by calling Hydra:show()
+            -- Note: you can still show the window manually by calling Hydra.hint:show()
+            -- and manually close it with Hydra.hint:close()
             hide_on_load = false,
 
             -- Table from function names to function. Functions should return
