@@ -114,6 +114,7 @@ function HintAutoWindow:show()
    ---@type hydra.api.Window
    local win = Window(winid)
    self.win = win
+   self.need_to_update = true
 
    local winhl = 'NormalFloat:HydraHint,FloatBorder:HydraBorder,FloatTitle:HydraTitle'
    if vim.version().minor >= 10 then
@@ -324,6 +325,7 @@ function HintManualWindow:close()
       self.win_config = nil
       self.buffer:delete()
       self.buffer = nil
+      self.need_to_update = false
    end
 end
 
