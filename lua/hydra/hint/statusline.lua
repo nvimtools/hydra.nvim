@@ -119,9 +119,7 @@ function HintManualStatusLine:_make_statusline()
 end
 
 function HintManualStatusLine:update()
-   print("hi")
    if not self.need_to_update then return end
-   print("need to update")
 
    local saved_statusline = self.original_statusline
    self.statusline = nil
