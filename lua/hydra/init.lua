@@ -386,7 +386,9 @@ function Hydra:_setup_pink_hydra()
       on_enter = {
          function()
             _G.Hydra = self
-            self.hint:show()
+            if not self.config.hint.hide_on_load then
+               self.hint:show()
+            end
          end,
          self.config.on_enter
       },
@@ -464,7 +466,9 @@ function Hydra:_enter()
 
    if self.config.on_enter then self.config.on_enter() end
 
-   self.hint:show()
+   if not self.config.hint.hide_on_load then
+      self.hint:show()
+   end
 end
 
 ---Programmatically activate hydra
