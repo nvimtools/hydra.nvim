@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/nvimtools/hydra.nvim/compare/v1.0.0...v1.0.1) (2024-01-21)
+
+
+### Bug Fixes
+
+* remove print statments ([#26](https://github.com/nvimtools/hydra.nvim/issues/26)) ([93e121b](https://github.com/nvimtools/hydra.nvim/commit/93e121b4098e2cc59975b4fa0951ebab34e82e9f))
+
 ## 1.0.0 (2024-01-11)
 
 
