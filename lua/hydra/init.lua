@@ -466,7 +466,7 @@ function Hydra:_enter()
 
    if self.config.on_enter then self.config.on_enter() end
 
-   if not self.config.hint.hide_on_load then
+   if self.config.hint and not self.config.hint.hide_on_load then
       self.hint:show()
    end
 end
