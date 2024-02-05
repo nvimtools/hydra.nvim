@@ -386,7 +386,7 @@ function Hydra:_setup_pink_hydra()
       on_enter = {
          function()
             _G.Hydra = self
-            if not self.config.hint.hide_on_load then
+            if self.config.hint and not self.config.hint.hide_on_load then
                self.hint:show()
             end
          end,
