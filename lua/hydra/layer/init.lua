@@ -334,6 +334,8 @@ function Layer:_normalize_input(enter, layer, exit)
          end
          util.deep_unsetmetatable(k)
          r[i] = k
+      else
+         r[i] = {} -- later functions assume that r[1|2|3] are tables
       end
    end
    return r[1], r[2], r[3]
