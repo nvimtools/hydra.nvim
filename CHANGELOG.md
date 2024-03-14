@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/nvimtools/hydra.nvim/compare/v1.0.1...v1.0.2) (2024-03-14)
+
+
+### Bug Fixes
+
+* check `config.hint` first ([#31](https://github.com/nvimtools/hydra.nvim/issues/31)) ([1ce9ee3](https://github.com/nvimtools/hydra.nvim/commit/1ce9ee35d2b869241091c0c7496c3cf0f3be981e))
+
 ## [1.0.1](https://github.com/nvimtools/hydra.nvim/compare/v1.0.0...v1.0.1) (2024-01-21)
 
 
