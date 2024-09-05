@@ -112,7 +112,7 @@ function Hydra:initialize(input)
    do
       if not self.config.desc then
          if self.name then
-            self.config.desc = '[Hydra] '..self.name
+            self.config.desc = self.name
          else
             self.config.desc = '[Hydra]'
          end
