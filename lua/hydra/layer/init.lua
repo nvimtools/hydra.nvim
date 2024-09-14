@@ -1,3 +1,23 @@
+local function deepcopy(o, seen)
+   seen = seen or {}
+   if o == nil then return nil end
+   if seen[o] then return seen[o] end
+
+   local no
+   if type(o) == 'table' then
+      no = {}
+      seen[o] = no
+
+      for k, v in next, o, nil do
+         no[deepcopy(k, seen)] = deepcopy(v, seen)
+      end
+      setmetatable(no, deepcopy(getmetatable(o), seen))
+   else
+      no = o
+   end
+   return no
+end
+
 --[[
 The Layer class accepts keymaps in the one form, but stores them internally in
 the another.  The `Layer:_normalize_input()` method is responsible for this. It
@@ -105,17 +125,7 @@ function Layer:initialize(input)
          end
       )
 
-      -- HACK: The `vim.deepcopy()` rize an error if try to copy `getfenv()`
-      -- environment with next snippet:
-      -- ```
-      --    local env = vim.deepcopy(getfenv())
-      -- ```
-      -- But `vim.tbl_deep_extend` function makes a copy if extend `getfenv()`
-      -- with not empty table; another way, it returns the reference to the
-      -- original table.
-      local env = vim.tbl_deep_extend('force', getfenv(), {
-         vim = { o = {}, go = {}, bo = {}, wo = {} }
-      }) --[[@as table]]
+      local env = deepcopy(getfenv()) --[[@as table]]
       env.vim.o  = self.options.o
       env.vim.go = self.options.go
       env.vim.bo = self.options.bo
@@ -133,9 +143,7 @@ function Layer:initialize(input)
                name))
          end
 
-         local env = vim.tbl_deep_extend('force', getfenv(), {
-            vim = { o = {}, go = {}, bo = {}, wo = {} }
-         })
+         local env = deepcopy(getfenv())
          env.vim.o  = self.options:make_meta_accessor(
             function(opt)
                return api.nvim_get_option_value(opt, {})
