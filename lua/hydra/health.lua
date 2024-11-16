@@ -1,8 +1,8 @@
 local M = {}
 
-local start = vim.health.start or vim.health.start
-local ok = vim.health.ok or vim.health.ok
-local warn = vim.health.warn or vim.health.warn
+local start = vim.health.start or vim.health.report_start
+local ok = vim.health.ok or vim.health.report_ok
+local warn = vim.health.warn or vim.health.report_warn
 
 start("Hydra: Checking settings")
 
