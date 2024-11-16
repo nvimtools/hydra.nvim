@@ -16,10 +16,10 @@ function Window:initialize(winid)
 
    self.wo = setmetatable({}, {
       __index = function(_, opt)
-         return api.nvim_win_get_option(self.id, opt)
+         return api.nvim_get_option_value(opt,{win=self.id})
       end,
       __newindex = function(_, opt, value)
-         api.nvim_win_set_option(self.id, opt, value)
+         api.nvim_set_option_value(opt, value,{win=self.id})
       end
    })
 end
@@ -36,7 +36,7 @@ end
 
 ---@param name string
 function Window:set_option(name, value)
-   return api.nvim_win_set_option(self.id, name, value)
+   return api.nvim_set_option_value(name, value,{win=self.id})
 end
 
 ---@param force? boolean
@@ -62,10 +62,10 @@ function Buffer:initialize(bufnr)
 
    self.bo = setmetatable({}, {
       __index = function(_, opt)
-         return api.nvim_buf_get_option(self.id, opt)
+         return api.nvim_get_option_value(opt,{buf=self.id})
       end,
       __newindex = function(_, opt, value)
-         api.nvim_buf_set_option(self.id, opt, value)
+         api.nvim_set_option_value(opt, value,{buf=self.id})
       end
    })
 end
@@ -77,7 +77,7 @@ end
 
 ---@param name string
 function Buffer:set_option(name, value)
-   return api.nvim_buf_set_option(self.id, name, value)
+   return api.nvim_set_option_value(name, value,{buf=self.id})
 end
 
 ---Returns the number of lines in the given buffer.

@@ -150,13 +150,13 @@ function Layer:initialize(input)
          )
          env.vim.bo = self.options:make_meta_accessor(
             function(opt)
-               return api.nvim_buf_get_option(0, opt)
+               return api.nvim_get_option_value(opt,{buf=0})
             end,
             function() show_disable_message('bo') end
          )
          env.vim.wo = self.options:make_meta_accessor(
             function(opt)
-               return api.nvim_win_get_option(0, opt)
+               return api.nvim_get_option_value(opt,{win=0})
             end,
             function() show_disable_message('wo') end
          )
