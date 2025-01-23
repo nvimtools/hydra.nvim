@@ -343,9 +343,10 @@ sets them in the following way:
 | pink     | foreign_keys = 'run'               |
 
 > [!NOTE]
-> The `exit` and `foreign_keys` options are higher priority than the `color` option and
-> can't be overridden by it. I.e, if manually set values of `exit` and `foreign_keys`
-> contradict the `color` value, then the `color` value is ignored
+> `Color` has higher precedence than the `exit` and `foreign_keys` options. 
+> If the values specified in the `exit` or `foreign_keys` options conflict with the 
+> ones implied by `color`, the `exit` or `foreign_keys` options are ignored.
+
 
 Colors are also used to highlight heads in the hint, so you know how they will behave.
 
