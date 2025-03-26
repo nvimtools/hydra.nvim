@@ -1,23 +1,3 @@
-local function deepcopy(o, seen)
-   seen = seen or {}
-   if o == nil then return nil end
-   if seen[o] then return seen[o] end
-
-   local no
-   if type(o) == 'table' then
-      no = {}
-      seen[o] = no
-
-      for k, v in next, o, nil do
-         no[deepcopy(k, seen)] = deepcopy(v, seen)
-      end
-      setmetatable(no, deepcopy(getmetatable(o), seen))
-   else
-      no = o
-   end
-   return no
-end
-
 --[[
 The Layer class accepts keymaps in the one form, but stores them internally in
 the another.  The `Layer:_normalize_input()` method is responsible for this. It
@@ -125,7 +105,7 @@ function Layer:initialize(input)
          end
       )
 
-      local env = deepcopy(getfenv()) --[[@as table]]
+      local env = util.deepcopy(getfenv()) --[[@as table]]
       env.vim.o  = self.options.o
       env.vim.go = self.options.go
       env.vim.bo = self.options.bo
@@ -143,7 +123,7 @@ function Layer:initialize(input)
                name))
          end
 
-         local env = deepcopy(getfenv())
+         local env = util.deepcopy(getfenv())
          env.vim.o  = self.options:make_meta_accessor(
             function(opt)
                return api.nvim_get_option_value(opt, {})

@@ -221,17 +221,7 @@ function Hydra:initialize(input)
             end
          )
 
-         -- HACK: The `vim.deepcopy()` rize an error if try to copy `getfenv()`
-         -- environment with next snippet:
-         -- ```
-         --    local env = vim.deepcopy(getfenv())
-         -- ```
-         -- But `vim.tbl_deep_extend` function makes a copy if extend `getfenv()`
-         -- with not empty table; another way, it returns the reference to the
-         -- original table.
-         local env = vim.tbl_deep_extend('force', getfenv(), {
-            vim = { o = {}, go = {}, bo = {}, wo = {} }
-         })
+         local env = util.deepcopy(getfenv()) --[[@as table]]
          env.vim.o  = self.options.o
          env.vim.go = self.options.go
          env.vim.bo = self.options.bo
@@ -247,9 +237,7 @@ function Hydra:initialize(input)
                name))
          end
 
-         local env = vim.tbl_deep_extend('force', getfenv(), {
-            vim = { o = {}, go = {}, bo = {}, wo = {} }
-         })
+         local env = util.deepcopy(getfenv()) --[[@as table]]
          env.vim.o  = self.options:make_meta_accessor(
             function(opt)
                return api.nvim_get_option_value(opt, {})
