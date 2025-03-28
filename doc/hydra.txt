@@ -1,4 +1,4 @@
-*hydra.txt*            For NVIM v0.9.4            Last change: 2024 January 17
+*hydra.txt*             For NVIM v0.9.4             Last change: 2025 March 26
 
 ==============================================================================
 Table of Contents                                    *hydra-table-of-contents*
@@ -357,10 +357,10 @@ options. It sets them in the following way:
   teal       foreign_keys = ‘warn’, exit = true
   pink       foreign_keys = ‘run’
 
-  [!NOTE] The `exit` and `foreign_keys` options are higher priority than the
-  `color` option and can’t be overridden by it. I.e, if manually set values of
-  `exit` and `foreign_keys` contradict the `color` value, then the `color` value
-  is ignored
+  [!NOTE] `Color` has higher precedence than the `exit` and `foreign_keys`
+  options. If the values specified in the `exit` or `foreign_keys` options
+  conflict with the ones implied by `color`, the `exit` or `foreign_keys` options
+  are ignored.
 Colors are also used to highlight heads in the hint, so you know how they will
 behave.
 

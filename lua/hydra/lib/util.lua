@@ -1,5 +1,25 @@
 local util = {}
 
+util.deepcopy = function(o, seen)
+   seen = seen or {}
+   if o == nil then return nil end
+   if seen[o] then return seen[o] end
+
+   local no
+   if type(o) == 'table' then
+      no = {}
+      seen[o] = no
+
+      for k, v in next, o, nil do
+         no[util.deepcopy(k, seen)] = util.deepcopy(v, seen)
+      end
+      setmetatable(no, util.deepcopy(getmetatable(o), seen))
+   else
+      no = o
+   end
+   return no
+end
+
 local deprecated_opts = {}
 
 ---@param msg string
