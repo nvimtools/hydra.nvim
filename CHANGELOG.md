@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/nvimtools/hydra.nvim/compare/v1.0.2...v1.0.3) (2025-03-28)
+
+
+### Bug Fixes
+
+* tbl_deep_extend error in 0.11 ([#47](https://github.com/nvimtools/hydra.nvim/issues/47)) ([394744a](https://github.com/nvimtools/hydra.nvim/commit/394744ac7a5e3449044e368006f49e823c2d6908))
+* tbl_deep_extend error in other places ([#62](https://github.com/nvimtools/hydra.nvim/issues/62)) ([f4ad21b](https://github.com/nvimtools/hydra.nvim/commit/f4ad21b530f4bd4c561e45bec4b53c07c8082dc3))
+
 ## [1.0.2](https://github.com/nvimtools/hydra.nvim/compare/v1.0.1...v1.0.2) (2024-03-14)
 
 
