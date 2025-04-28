@@ -361,12 +361,13 @@ function Hydra:_setup_hydra_keymaps()
 end
 
 function Hydra:_setup_pink_hydra()
-   local layer = { enter = {}, layer = {}, exit = {} }
+   local layer = { name = self.name, enter = {}, layer = {}, exit = {} }
    layer.config = {
       debug = self.config.debug,
       desc = self.config.desc,
       buffer = self.config.buffer,
       timeout = self.config.timeout,
+      hint = self.config.hint,
       on_key = function()
          if self.hint.update then self.hint:update() end
          if self.config.on_key then self.config.on_key() end

@@ -47,6 +47,7 @@ local autocmd = api.nvim_create_autocmd
 _G.active_keymap_layer = nil
 
 ---@class hydra.Layer
+---@field name string
 ---@field active boolean
 ---@field config hydra.layer.Config
 ---@field enter_keymaps table
@@ -70,6 +71,7 @@ function Layer:initialize(input)
    self.active = false
    self.id = util.generate_id() -- Unique ID for each Layer.
    self.config = input.config or {}
+   self.name = input.name
    if self.config.timeout == true then
       self.config.timeout = vim.o.timeoutlen
    end
