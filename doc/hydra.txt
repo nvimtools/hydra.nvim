@@ -1,4 +1,4 @@
-*hydra.txt*             For NVIM v0.9.4             Last change: 2025 March 26
+*hydra.txt*             For NVIM v0.9.4             Last change: 2025 April 28
 
 ==============================================================================
 Table of Contents                                    *hydra-table-of-contents*
