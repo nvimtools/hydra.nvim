@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/nvimtools/hydra.nvim/compare/v1.0.3...v1.0.4) (2025-05-03)
+
+
+### Bug Fixes
+
+* allow layers to have names and trigger status line active function ([#65](https://github.com/nvimtools/hydra.nvim/issues/65)) ([8c4a9f6](https://github.com/nvimtools/hydra.nvim/commit/8c4a9f621ec7cdc30411a1f3b6d5eebb12b469dc))
+
 ## [1.0.3](https://github.com/nvimtools/hydra.nvim/compare/v1.0.2...v1.0.3) (2025-03-28)
 
 
