@@ -41,60 +41,107 @@ local default_config = {
 ---@param input table
 function Hydra:initialize(input)
    do -- validate parameters
-      vim.validate({
-         name = { input.name, 'string', true },
-         config = { input.config, 'table', true },
-         mode = { input.mode, { 'string', 'table' }, true },
-         body = { input.body, 'string', true },
-         heads = { input.heads, 'table' },
-      })
-      if input.config then
+      -- FIXME: remove else section in future.
+      -- vim.validate(spec) is deprecated, use instead of vim.validate(name, value, validator[, optional][, message])
+      if vim.fn.has('nvim-0.11') == 1 then
+         vim.validate('name', input.name, 'string', true)
+         vim.validate('config', input.config, 'table', true)
+         vim.validate('mode', input.mode, { 'string', 'table' }, true)
+         vim.validate('body', input.body, 'string', true)
+         vim.validate('heads', input.heads, 'table')
+         if input.config then
+            vim.validate('on_enter', input.config.on_enter, 'function', true)
+            vim.validate('on_exit', input.config.on_exit, 'function', true)
+            vim.validate('exit', input.config.exit, 'boolean', true)
+            vim.validate('timeout', input.config.timeout, { 'boolean', 'number' }, true)
+            vim.validate('buffer', input.config.buffer, { 'boolean', 'number' }, true)
+            vim.validate('hint', input.config.hint, { 'boolean', 'string', 'table' }, true)
+            vim.validate('desc', input.config.desc, 'string', true)
+            vim.validate('foreign_keys',input.config.foreign_keys, function(foreign_keys)
+                  return (type(foreign_keys) == 'nil'
+                     or foreign_keys == 'warn' or foreign_keys == 'run')
+               end, 'Hydra: config.foreign_keys value could be either "warn" or "run"'
+            )
+            vim.validate('color', input.config.color, function(color)
+                  if not color then return true end
+                  local valid_colors = {
+                     red = true, blue = true, amaranth = true, teal = true, pink = true
+                  }
+                  return valid_colors[color] or false
+               end, 'Hydra: color value could be one of: red, blue, amaranth, teal, pink'
+            )
+         end
+         for _, head in ipairs(input.heads) do
+            vim.validate('head', head, 'table')
+            local lhs, rhs, opts = head[1], head[2], head[3]
+            vim.validate('lhs', lhs, 'string')
+            vim.validate('rhs', rhs, { 'string', 'function' }, true)
+            vim.validate('opts', opts, 'table', true)
+            if opts then
+               vim.validate('head.desc', opts.desc, function(d)
+                     return (d == nil) or (type(d) == 'string') or (d == false)
+                  end, 'string or false'
+               )
+               vim.validate('head.exit', opts.exit, 'boolean', true)
+               vim.validate('head.exit_before', opts.exit_before, 'boolean', true)
+            end
+         end
+      else
          vim.validate({
-            on_enter = { input.config.on_enter, 'function', true },
-            on_exit = { input.config.on_exit, 'function', true },
-            exit = { input.config.exit, 'boolean', true },
-            timeout = { input.config.timeout, { 'boolean', 'number' }, true },
-            buffer = { input.config.buffer, { 'boolean', 'number' }, true },
-            hint = { input.config.hint, { 'boolean', 'string', 'table' }, true },
-            desc = { input.config.desc, 'string', true }
+            name = { input.name, 'string', true },
+            config = { input.config, 'table', true },
+            mode = { input.mode, { 'string', 'table' }, true },
+            body = { input.body, 'string', true },
+            heads = { input.heads, 'table' },
          })
-         vim.validate({
-            foreign_keys = { input.config.foreign_keys, function(foreign_keys)
-               if type(foreign_keys) == 'nil'
-                  or foreign_keys == 'warn' or foreign_keys == 'run'
-               then
-                  return true
-               else
-                  return false
-               end
-            end, 'Hydra: config.foreign_keys value could be either "warn" or "run"' }
-         })
-         vim.validate({
-            color = { input.config.color, function(color)
-               if not color then return true end
-               local valid_colors = {
-                  red = true, blue = true, amaranth = true, teal = true, pink = true
-               }
-               return valid_colors[color] or false
-            end, 'Hydra: color value could be one of: red, blue, amaranth, teal, pink' }
-         })
-      end
-      for _, head in ipairs(input.heads) do
-         vim.validate({ head = { head, 'table' } })
-         local lhs, rhs, opts = head[1], head[2], head[3]
-         vim.validate({
-            lhs  = { lhs, 'string' },
-            rhs  = { rhs, { 'string', 'function' }, true },
-            opts = { opts, 'table', true },
-         })
-         if opts then
+         if input.config then
             vim.validate({
-               ['head.desc'] = { opts.desc, function(d)
-                  return (d == nil) or (type(d) == 'string') or (d == false)
-               end, 'string or false' },
-               ['head.exit'] = { opts.exit, 'boolean', true },
-               ['head.exit_before'] = { opts.exit_before, 'boolean', true },
+               on_enter = { input.config.on_enter, 'function', true },
+               on_exit = { input.config.on_exit, 'function', true },
+               exit = { input.config.exit, 'boolean', true },
+               timeout = { input.config.timeout, { 'boolean', 'number' }, true },
+               buffer = { input.config.buffer, { 'boolean', 'number' }, true },
+               hint = { input.config.hint, { 'boolean', 'string', 'table' }, true },
+               desc = { input.config.desc, 'string', true }
             })
+            vim.validate({
+               foreign_keys = { input.config.foreign_keys, function(foreign_keys)
+                  if type(foreign_keys) == 'nil'
+                     or foreign_keys == 'warn' or foreign_keys == 'run'
+                  then
+                     return true
+                  else
+                     return false
+                  end
+               end, 'Hydra: config.foreign_keys value could be either "warn" or "run"' }
+            })
+            vim.validate({
+               color = { input.config.color, function(color)
+                  if not color then return true end
+                  local valid_colors = {
+                     red = true, blue = true, amaranth = true, teal = true, pink = true
+                  }
+                  return valid_colors[color] or false
+               end, 'Hydra: color value could be one of: red, blue, amaranth, teal, pink' }
+            })
+         end
+         for _, head in ipairs(input.heads) do
+            vim.validate({ head = { head, 'table' } })
+            local lhs, rhs, opts = head[1], head[2], head[3]
+            vim.validate({
+               lhs  = { lhs, 'string' },
+               rhs  = { rhs, { 'string', 'function' }, true },
+               opts = { opts, 'table', true },
+            })
+            if opts then
+               vim.validate({
+                  ['head.desc'] = { opts.desc, function(d)
+                     return (d == nil) or (type(d) == 'string') or (d == false)
+                  end, 'string or false' },
+                  ['head.exit'] = { opts.exit, 'boolean', true },
+                  ['head.exit_before'] = { opts.exit_before, 'boolean', true },
+               })
+            end
          end
       end
    end
